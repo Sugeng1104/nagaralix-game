@@ -1,17 +1,104 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07132e"><title>Registrasi Penjelajah — NARAGALIX</title><link rel="stylesheet" href="auth-style.css"></head><body><main>
-<img class="logo" src="img/logo-naragalix.png" alt="Logo resmi NARAGALIX"><p class="subtitle">Game Edukasi Interaktif • SD Kelas IV–VI</p>
-<div class="layout"><section class="panel intro"><span class="eyebrow">AKADEMI PENJELAJAH GALAKSI</span><h1>Siap menjadi penjelajah cerdas?</h1><p>Daftarkan dirimu dan bersiap menghadapi tantangan Matematika, IPA, IPS, Bahasa Indonesia, dan Pendidikan Pancasila di setiap titik pemberhentian.</p><div><span class="pill">🚀 10 Pos</span><span class="pill">🧩 81 Tantangan</span><span class="pill">🧠 5 Mata Pelajaran</span><span class="pill">🪐 Petualangan Galaksi</span></div></section>
-<section class="panel"><h2>✦ Registrasi Pemain</h2><p class="formhint">Isi identitas dengan benar. Setelah berhasil, kamu akan diarahkan otomatis ke halaman login.</p>
-<form id="registerForm"><label for="nama">Nama lengkap siswa</label><input id="nama" maxlength="100" minlength="3" autocomplete="name" placeholder="Nama lengkap penjelajah" required>
-<div class="two"><div><label for="kelas">Kelas</label><select id="kelas" required><option value="">Pilih kelas</option><option value="4">IV (Empat)</option><option value="5">V (Lima)</option><option value="6">VI (Enam)</option></select></div><div><label for="rombel">Rombel (opsional)</label><input id="rombel" maxlength="12" placeholder="Contoh: A"></div></div>
-<label for="sekolah">Nama sekolah</label><input id="sekolah" maxlength="120" minlength="3" placeholder="Contoh: SDN Ranuklindungan I" required>
-<label for="username">Nama pengguna</label><input id="username" minlength="4" maxlength="30" pattern="[A-Za-z0-9_]+" title="Huruf, angka, atau garis bawah (_), 4–30 karakter" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Contoh: penjelajah_04" required>
-<label for="password">Kata sandi (minimal 8 karakter)</label><div class="passwordwrap"><input id="password" type="password" minlength="8" maxlength="100" autocomplete="new-password" required><button class="showpass" type="button" data-for="password">Lihat</button></div>
-<label for="confirm">Ulangi kata sandi</label><div class="passwordwrap"><input id="confirm" type="password" minlength="8" maxlength="100" autocomplete="new-password" required><button class="showpass" type="button" data-for="confirm">Lihat</button></div>
-<button class="action" id="submit" type="submit">🚀 Daftar Sekarang</button><div class="status" id="status" role="status" aria-live="polite"></div></form>
-<p class="note">Gunakan username yang mudah diingat. Jangan membagikan kata sandi kepada teman. Pendaftaran menyimpan akun di database NARAGALIX.</p><a class="back" href="login.html">Sudah punya akun? <strong>Masuk di sini →</strong></a><a class="back" href="index.html">← Kembali ke Intro</a></section></div></main>
-<script src="config.js"></script><script src="auth.js"></script><script>
-(function(){'use strict';const f=document.getElementById('registerForm'),status=document.getElementById('status'),button=document.getElementById('submit');
-document.querySelectorAll('.showpass').forEach(b=>b.addEventListener('click',()=>{const el=document.getElementById(b.dataset.for);el.type=el.type==='password'?'text':'password';b.textContent=el.type==='password'?'Lihat':'Tutup';}));
-f.addEventListener('submit',async e=>{e.preventDefault();if(!f.reportValidity())return;const pw=document.getElementById('password').value;if(pw!==document.getElementById('confirm').value){status.textContent='Konfirmasi kata sandi tidak sama.';return;}button.disabled=true;status.classList.remove('good');status.textContent='Mendaftarkan penjelajah...';try{const out=await NGL.api('register',{nama_lengkap:document.getElementById('nama').value,kelas:document.getElementById('kelas').value,rombel:document.getElementById('rombel').value,sekolah:document.getElementById('sekolah').value,username:document.getElementById('username').value,password:pw});status.classList.add('good');status.textContent='✅ '+out.message+' Mengalihkan ke login...';f.reset();setTimeout(()=>location.replace('login.html?registered=1'),1800);}catch(err){status.textContent='⚠ '+err.message;button.disabled=false;}});
-})();</script></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07132e">
+  <meta name="description" content="Registrasi pemain NARAGALIX, petualangan edukasi lintas galaksi untuk siswa kelas IV–VI.">
+  <title>Registrasi Penjelajah | NARAGALIX</title>
+  <link rel="stylesheet" href="auth-style.css">
+  <style>
+    .panel{position:relative;overflow:hidden}.panel:after{content:"";position:absolute;inset:auto -90px -125px auto;width:230px;height:230px;background:radial-gradient(circle,#0cb9ff25,transparent 68%);pointer-events:none}
+    .mission{display:flex;align-items:center;gap:12px;padding:13px 15px;margin-top:23px;background:#071934;border:1px solid #3b85b888;border-radius:15px}.mission-icon{font-size:29px}.mission strong{display:block;font-size:14px}.mission small{display:block;color:#c3d7f2;margin-top:4px;line-height:1.5}
+    .progressline{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 0 19px;color:#c6ddf8;font-size:12px}.step{display:flex;align-items:center;gap:6px}.dot{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#16466e;border:1px solid #63d6ff;font-weight:800}.step.active .dot{background:#ffd46c;color:#10294b;border-color:#ffd46c}.bar{width:26px;height:1px;background:#6d8aab}
+    .required{color:#ffce75}.helper{font-size:12px;color:#9fbee2;margin:6px 0 0}.pass-strength{height:5px;background:#254266;border-radius:6px;overflow:hidden;margin-top:9px}.pass-strength span{display:block;width:0;height:100%;background:#ff8b70;transition:width .2s,background .2s}
+    .status{border-radius:12px;padding:0}.status:not(:empty){padding:11px 12px;border:1px solid #b78d3575;background:#49351d4a}.status.good{border-color:#3eaa8177;background:#064d3444}.legal{font-size:12px;color:#b8cbe8;line-height:1.6}.footerlink{text-align:center;margin-top:18px}.footerlink a{color:#8beaff;font-weight:700;text-decoration:none}.footerlink a:hover{text-decoration:underline}
+    @media(prefers-reduced-motion:no-preference){.logo{animation:float 5s ease-in-out infinite}@keyframes float{50%{transform:translateY(-6px)}}}
+  </style>
+</head>
+<body>
+  <main>
+    <a href="index.html" aria-label="Kembali ke halaman awal"><img class="logo" src="img/logo-naragalix.png" alt="Logo resmi NARAGALIX — Nalar dan Petualangan Lintas Galaksi"></a>
+    <p class="subtitle">Akademi Penjelajah Galaksi • Kelas IV, V, dan VI SD</p>
+    <div class="layout">
+      <section class="panel intro" aria-labelledby="welcomeTitle">
+        <span class="eyebrow">🚀 MISI PENJELAJAH BARU</span>
+        <h1 id="welcomeTitle">Petualangan hebat dimulai dari sini!</h1>
+        <p>Buat akun penjelajahmu untuk mengarungi 10 pos antargalaksi. Di setiap titik pemberhentian, tantangan dari lima mata pelajaran akan muncul secara acak sesuai kelasmu.</p>
+        <div aria-label="Fitur permainan"><span class="pill">🪐 10 Pos Galaksi</span><span class="pill">🎯 81 Titik Tantangan</span><span class="pill">🧮 Matematika</span><span class="pill">🔬 IPA</span><span class="pill">🌍 IPS</span><span class="pill">📚 Bahasa Indonesia</span><span class="pill">🇮🇩 Pancasila</span></div>
+        <div class="mission"><span class="mission-icon" aria-hidden="true">🧑‍🚀</span><div><strong>Setelah daftar, kamu akan login</strong><small>Lalu pilih karakter Auril, Rivo, atau Chandra untuk memulai perjalanan.</small></div></div>
+      </section>
+      <section class="panel" aria-labelledby="formTitle">
+        <div class="progressline" aria-label="Tahapan pendaftaran"><span class="step active"><span class="dot">1</span>Daftar</span><span class="bar"></span><span class="step"><span class="dot">2</span>Login</span><span class="bar"></span><span class="step"><span class="dot">3</span>Pilih karakter</span></div>
+        <h2 id="formTitle">✦ Registrasi Pemain</h2>
+        <p class="formhint">Lengkapi data berikut dengan benar. Tanda <span class="required">*</span> wajib diisi.</p>
+        <form id="registerForm" autocomplete="on">
+          <label for="nama">Nama lengkap siswa <span class="required">*</span></label>
+          <input id="nama" name="nama_lengkap" maxlength="100" minlength="3" autocomplete="name" placeholder="Contoh: Auril Putri" required>
+          <div class="two">
+            <div><label for="kelas">Kelas <span class="required">*</span></label><select id="kelas" name="kelas" required><option value="">Pilih kelas</option><option value="4">IV (Empat)</option><option value="5">V (Lima)</option><option value="6">VI (Enam)</option></select></div>
+            <div><label for="rombel">Rombel</label><input id="rombel" name="rombel" maxlength="12" placeholder="Contoh: A"></div>
+          </div>
+          <label for="sekolah">Nama sekolah <span class="required">*</span></label>
+          <input id="sekolah" name="sekolah" maxlength="120" minlength="3" placeholder="Contoh: SDN Ranuklindungan I" required>
+          <label for="username">Username <span class="required">*</span></label>
+          <input id="username" name="username" minlength="4" maxlength="30" pattern="[A-Za-z0-9_]+" title="Gunakan 4–30 karakter: huruf, angka, atau garis bawah" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Contoh: penjelajah_04" required>
+          <p class="helper">4–30 karakter, hanya huruf, angka, dan garis bawah (_).</p>
+          <label for="password">Kata sandi <span class="required">*</span></label>
+          <div class="passwordwrap"><input id="password" name="password" type="password" minlength="8" maxlength="100" autocomplete="new-password" placeholder="Minimal 8 karakter" required><button class="showpass" type="button" data-for="password" aria-label="Tampilkan kata sandi">Lihat</button></div>
+          <div class="pass-strength" aria-hidden="true"><span id="strength"></span></div>
+          <label for="confirm">Ulangi kata sandi <span class="required">*</span></label>
+          <div class="passwordwrap"><input id="confirm" type="password" minlength="8" maxlength="100" autocomplete="new-password" placeholder="Ketik ulang kata sandi" required><button class="showpass" type="button" data-for="confirm" aria-label="Tampilkan konfirmasi kata sandi">Lihat</button></div>
+          <button class="action" id="submit" type="submit">🚀 Daftar &amp; Jadi Penjelajah</button>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+        </form>
+        <p class="legal">Gunakan akunmu sendiri. Jangan membagikan kata sandi. Jika perlu bantuan, mintalah pendampingan guru atau orang tua.</p>
+        <p class="footerlink">Sudah memiliki akun? <a href="login.html">Masuk di sini →</a></p>
+      </section>
+    </div>
+  </main>
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    (() => {
+      'use strict';
+      const form = document.getElementById('registerForm');
+      const status = document.getElementById('status');
+      const submit = document.getElementById('submit');
+      const get = id => document.getElementById(id);
+      const message = (text, success=false) => {status.textContent=text;status.classList.toggle('good',success);};
+      document.querySelectorAll('.showpass').forEach(button => button.addEventListener('click', () => {
+        const input=get(button.dataset.for); const visible=input.type==='password';
+        input.type=visible?'text':'password'; button.textContent=visible?'Tutup':'Lihat';
+        button.setAttribute('aria-label',visible?'Sembunyikan kata sandi':'Tampilkan kata sandi');
+      }));
+      get('password').addEventListener('input', () => {
+        const p=get('password').value;
+        const score=[p.length>=8,p.length>=12,/[A-Z]/.test(p)&&/[a-z]/.test(p),/\d/.test(p),/[^\w]/.test(p)].filter(Boolean).length;
+        const bar=get('strength');bar.style.width=(score*20)+'%';bar.style.background=score>=4?'#60e5a0':score>=2?'#ffcf65':'#ff8b70';
+      });
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if(!form.reportValidity()) return;
+        const password=get('password').value;
+        if(password!==get('confirm').value){message('⚠ Konfirmasi kata sandi tidak sama.');get('confirm').focus();return;}
+        if(!window.NGL || typeof NGL.api!=='function'){message('⚠ File auth.js belum termuat. Periksa file di GitHub.');return;}
+        submit.disabled=true;submit.textContent='⏳ Menyimpan akun...';message('Menghubungkan ke database NARAGALIX...');
+        try {
+          const result=await NGL.api('register',{
+            nama_lengkap:get('nama').value.trim(), kelas:get('kelas').value,
+            rombel:get('rombel').value.trim(), sekolah:get('sekolah').value.trim(),
+            username:get('username').value.trim(), password
+          });
+          message('✅ '+(result.message||'Registrasi berhasil!')+' Mengalihkan ke halaman login...',true);
+          form.reset();get('strength').style.width='0';
+          window.setTimeout(()=>window.location.replace('login.html?registered=1'),1800);
+        } catch(error) {
+          message('⚠ '+(error?.message||'Pendaftaran gagal. Coba lagi.'));
+          submit.disabled=false;submit.textContent='🚀 Daftar & Jadi Penjelajah';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
