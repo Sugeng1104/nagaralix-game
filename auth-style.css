@@ -1,0 +1,39 @@
+/* NARAGALIX — shared registration and login theme */
+:root{color-scheme:dark;--cyan:#5ee9ff;--gold:#ffd46c;--muted:#bfd2f0;--line:#4f9cd17c;--bg:#030918}
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 75% 12%,#174d92 0,transparent 38%),radial-gradient(ellipse at 9% 88%,#4b2277 0,transparent 48%),var(--bg);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.38;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:67px 73px}
+main{position:relative;max-width:1050px;margin:auto;padding:18px 18px 55px}
+.logo{display:block;width:min(500px,90%);height:clamp(130px,23vw,225px);object-fit:contain;margin:0 auto;filter:drop-shadow(0 0 22px #00aaff70)}
+.subtitle{text-align:center;color:var(--muted);margin:0 0 24px}
+.layout{display:grid;grid-template-columns:.92fr 1.08fr;gap:24px}
+.panel{border:1px solid var(--line);border-radius:25px;background:linear-gradient(150deg,#0c2047f2,#0a102af2);box-shadow:0 18px 60px #0008,inset 0 0 35px #2886ff12;padding:27px}
+.intro{display:flex;flex-direction:column;justify-content:center}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.14em}
+.intro h1{font-size:clamp(28px,4vw,43px);line-height:1.14;margin:13px 0}
+.intro p{color:var(--muted);line-height:1.75}
+.pill{display:inline-block;padding:9px 12px;margin:5px 5px 5px 0;border:1px solid #4ac5ff66;border-radius:25px;background:#0c2a54;font-size:13px}
+.panel h2{margin:0 0 7px;font-size:25px}
+.formhint,.note{color:var(--muted);font-size:13px;line-height:1.65}.formhint{margin:0 0 15px}
+label{display:block;font-size:14px;font-weight:700;margin:14px 0 6px}
+input,select{width:100%;border:1px solid #4b86b6;border-radius:12px;background:#071630;color:#fff;padding:13px 14px;font:inherit;outline:none}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #5ee9ff80;outline-offset:2px}
+input:focus,select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #5ee9ff25}
+input::placeholder{color:#8aa4c8}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.action{width:100%;border:0;border-radius:13px;padding:15px;margin-top:21px;font-size:16px;font-weight:900;color:#0b2140;background:linear-gradient(110deg,#fff2a0,#ffb631);cursor:pointer;box-shadow:0 6px 24px #ffc12b50;transition:transform .15s,filter .15s}
+.action:not(:disabled):hover{transform:translateY(-2px);filter:brightness(1.05)}
+.action:disabled{opacity:.6;cursor:wait}
+.back{display:block;text-align:center;color:#b9eaff;margin-top:16px;text-decoration:none}
+.back:hover,.smalllink:hover{text-decoration:underline}
+.note{border-top:1px solid #38608b;margin-top:19px;padding-top:13px}
+.status{min-height:22px;margin-top:13px;font-size:13px;line-height:1.5;color:#ffd47a;overflow-wrap:anywhere}
+.status.good{color:#83ffbf}
+.check{display:flex;align-items:center;gap:9px;margin:13px 0;color:var(--muted);font-size:13px}
+.check input{width:auto;accent-color:#ffd46c}
+.smalllink{color:#7deaff;text-decoration:none}
+.passwordwrap{position:relative}.passwordwrap input{padding-right:90px}
+.showpass{position:absolute;right:7px;top:7px;padding:7px 9px;background:#183966;border:1px solid #3e7ca7;color:#fff;border-radius:8px;cursor:pointer}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.panel{padding:22px}.intro{min-height:180px}.two{grid-template-columns:1fr}.logo{height:155px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.action{transition:none}}
