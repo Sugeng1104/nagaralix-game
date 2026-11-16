@@ -28,8 +28,50 @@
 /* Mr. Sugeng interactive video call */
 .vc-launch{margin-top:15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}.vc-launch .btn{font-size:16px;background:linear-gradient(120deg,#12896b,#215cbb);border-color:#93fbe0}
 .vc-overlay{position:fixed;inset:0;z-index:9999;background:#030b19eF;display:none;align-items:center;justify-content:center;padding:14px;overflow:auto}.vc-overlay.open{display:flex}.vc-dialog{width:min(880px,100%);max-height:96vh;overflow:auto;border:1px solid #4b9edb;border-radius:22px;background:linear-gradient(150deg,#102b53,#101a38);padding:17px;box-shadow:0 20px 80px #000a}.vc-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.vc-head h2{margin:0}.vc-dialog select,.vc-dialog input{background:#0b2144;color:white;border:1px solid #679dd0;border-radius:10px;padding:11px;width:100%;font-size:15px}.vc-screen{position:relative;background:#050d1d;border-radius:16px;overflow:hidden;margin:13px 0;aspect-ratio:16/9}.vc-screen video{width:100%;height:100%;object-fit:contain;background:black}.vc-offline{position:absolute;inset:0;background:#07152bea;display:none;align-items:center;justify-content:center;text-align:center;padding:22px}.vc-offline.show{display:flex}.vc-status{background:#163c65;border:1px solid #427aaf;border-radius:12px;padding:11px;margin:10px 0;min-height:48px}.vc-controls{display:flex;gap:9px;flex-wrap:wrap}.vc-controls button{flex:1;min-width:135px}.vc-caption{color:#b6cfe8;font-size:13px}.vc-topic{margin-top:13px}.vc-response{display:flex;gap:8px;margin-top:10px}.vc-response input{flex:1}.vc-response button{white-space:nowrap}@media(max-width:550px){.vc-dialog{padding:12px}.vc-response{flex-direction:column}.vc-screen{aspect-ratio:4/3}}
+
+
+/* NARAGALIX 3D Galaxy Classroom skin — visual-only; existing game logic unchanged */
+:root{--line:#52dfff;--cyan:#8ffaff;--gold:#ffe88e;--white:#fff9ff}
+body{background:radial-gradient(ellipse at 50% -12%,#6536b6 0,transparent 47%),radial-gradient(ellipse at 100% 50%,#004d8a 0,transparent 52%),linear-gradient(140deg,#090c31,#0b214c 50%,#140b39);background-attachment:fixed}
+body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(#fff9 1px,transparent 1px),radial-gradient(#a5eaff7a 1px,transparent 1px);background-size:100px 100px,157px 157px;background-position:20px 30px,70px 90px;opacity:.25}
+.wrap{max-width:1360px;padding:22px clamp(12px,2.8vw,35px)}
+.top{border:1px solid #70dfff66;border-radius:22px;background:linear-gradient(100deg,#19256fd9,#152e67df);padding:12px 15px;box-shadow:0 12px 30px #03072388,inset 0 1px #b8f9ff5c}
+.back,.btn{border-radius:16px;border:1px solid #65e4ff;box-shadow:0 5px 0 #051d48,0 8px 22px #00a7ff2b,inset 0 1px #fff6;background:linear-gradient(180deg,#2b75c1,#173b86);transition:transform .16s,filter .16s,box-shadow .16s}
+.back:hover,.btn:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.12)}
+.hero{min-height:340px;padding:38px 34px 28px;isolation:isolate;background:radial-gradient(circle at 74% 32%,#18a5c766,transparent 42%),linear-gradient(120deg,#17195de8,#173b8ce8 64%,#2c1964e8);border:2px solid #74eeff;box-shadow:0 0 0 5px #22b6ff18,0 24px 65px #0009,inset 0 0 60px #0bb9ff24}
+.hero:after{content:'';position:absolute;z-index:-1;right:2%;bottom:0;width:29%;height:100%;background:url('rabbit-3d.png') center bottom / contain no-repeat;filter:drop-shadow(0 15px 15px #0009);opacity:.96}
+.hero:before{content:'✦   ✧    ✦    ✧    ✦';position:absolute;right:5%;top:15px;font-size:22px;color:#ffed8a9c}
+.hero h1{font-size:clamp(32px,4.5vw,60px);line-height:1.12;color:#fff3a2;text-shadow:0 4px #3a2787,0 0 28px #ffb74066;max-width:70%}
+.hero p{max-width:68%;font-size:17px;color:#e5f4ff}
+.tag{color:#ffeb9e}
+.stats{max-width:74%}.stat{background:linear-gradient(155deg,#364eaa,#17345e);border:1px solid #70e8ff;border-radius:16px;box-shadow:inset 0 1px #fff6,0 5px 14px #0007;font-weight:750}
+.progress{height:17px;border-color:#5fd8ff;box-shadow:0 0 12px #00c8ff55}.progress>div{background:linear-gradient(90deg,#19f0eb,#9dff83,#fff16e)}
+.layout{grid-template-columns:minmax(265px,330px) minmax(0,1fr);gap:22px}
+.panel{border:2px solid #4ccfff;border-radius:25px;background:linear-gradient(150deg,#15275bea,#13295be9 52%,#171f52ef);box-shadow:0 15px 0 #060d32,0 24px 48px #0007,inset 0 1px #d9fcff55}
+.panel h2{color:#fff3a0;text-shadow:0 2px 10px #5c3baf}
+.unitnav{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.unitbtn{min-height:103px;text-align:center;position:relative;padding:15px 9px 12px;background:linear-gradient(155deg,#4b62bd,#263e8d 70%,#1c2b66);border:2px solid #85eaff;border-radius:18px;box-shadow:0 5px 0 #09164a,0 9px 16px #0006,inset 0 2px #e5fbff66;font-weight:850;font-size:15px;line-height:1.35}
+.unitbtn:hover{transform:translateY(-3px);background:linear-gradient(155deg,#697ee1,#2958a7)}
+.unitbtn.active{background:linear-gradient(155deg,#6c4de5,#2164b5);border-color:#ffe98c;box-shadow:0 5px 0 #432476,0 0 20px #a981ff88}
+.unitbtn small{margin-top:5px;font-size:12px;color:#d9edff}
+.unitbtn .done{position:absolute;right:7px;top:5px}
+.vc-launch{padding:17px 19px;margin:0 0 22px;border:2px solid #f19aff;border-radius:20px;background:linear-gradient(105deg,#5920a4c9,#184a95cc);box-shadow:0 9px 0 #23145c,0 14px 30px #e53cff29}
+.vc-launch .btn{background:linear-gradient(150deg,#fb4de7,#8525cd);border:2px solid #ffadfb;font-size:19px;box-shadow:0 5px 0 #4c146c,0 0 18px #ff55ed7a}
+.credit-status{background:linear-gradient(110deg,#533184,#1a6086);border:2px solid #ffda79;box-shadow:inset 0 1px #fff7,0 7px 18px #0005}
+.tabs{gap:10px}.tab{flex:1;min-width:130px;background:linear-gradient(180deg,#3b5caf,#1c3879);border:2px solid #6adfff;border-radius:15px;box-shadow:0 5px 0 #091d4e;font-weight:800}
+.tab.active{background:linear-gradient(155deg,#6c54dd,#2d86c4);border-color:#ffe988;color:#fff5ac}
+.word{border:2px solid #6cdcff;background:linear-gradient(135deg,#1c4e94,#292f7a);border-radius:18px;box-shadow:0 6px 0 #0a204a,0 12px 18px #0005}
+.word:nth-child(4n+1){border-color:#ffd273}.word:nth-child(4n+3){border-color:#df9aff}
+.word-visual{font-size:49px}.mission-art{font-size:70px}.example,.question,.video-stage{border-radius:16px;background:linear-gradient(140deg,#143f78,#1b2c66);border:1px solid #6bdfff;box-shadow:0 7px 20px #0004}
+.option{border:1px solid #85b7ed;background:#214681}.option:hover{background:#315c9d}
+.vc-dialog{border:2px solid #8fefff;box-shadow:0 0 40px #37baff55,0 20px 80px #000a}
+@media(max-width:920px){.layout{grid-template-columns:1fr}.unitnav{grid-template-columns:repeat(5,minmax(0,1fr))}.unitbtn{font-size:13px;min-height:96px}}
+@media(max-width:720px){.hero{min-height:310px;padding:23px 18px}.hero:after{width:37%;opacity:.6}.hero h1,.hero p{max-width:90%}.hero p{max-width:75%}.stats{max-width:100%}.unitnav{grid-template-columns:repeat(2,minmax(0,1fr))}.tab{min-width:120px}.wrap{padding:12px}}
+@media(max-width:420px){.hero:after{opacity:.25;width:60%}.hero p{max-width:100%}.unitnav{grid-template-columns:repeat(2,minmax(0,1fr))}.unitbtn{min-height:94px}}
+@media(prefers-reduced-motion:reduce){.unitbtn,.btn,.back{transition:none}}
+
 </style><link rel="stylesheet" href="player-header.css"></head><body><div class="wrap"><header class="top"><a class="back" href="sekolah.html">← Sekolah Galaksi</a><a class="back" href="permainan.html">🚀 Kembali ke Permainan</a></header>
-<section class="hero"><span class="tag">🌌 NARAGALIX · SEKOLAH GALAKSI · LEVEL DASAR</span><h1>🇬🇧 English Adventure</h1><p>Belajar Bahasa Inggris dari nol bersama Auril! Pelajari kosakata, dengarkan pelafalan, baca contoh, lalu selesaikan latihan di setiap misi.</p><div class="stats"><div class="stat">📚 <b>10</b> Misi</div><div class="stat">🗣️ <b>100+</b> Kosakata</div><div class="stat">🧩 <b>30</b> Soal</div><div class="stat">⭐ <b id="completed">0</b>/10 Misi Selesai</div></div><p class="muted" id="progressText">Progres tersimpan di perangkat ini.</p><div class="progress" aria-label="Kemajuan belajar"><div id="progressFill"></div></div></section>
+<section class="hero"><span class="tag">🌌 NARAGALIX · SEKOLAH GALAKSI · LEVEL DASAR</span><h1>🇬🇧 Kelas Bahasa Inggris</h1><p>Belajar Bahasa Inggris dari nol bersama Auril! Pelajari kosakata, dengarkan pelafalan, baca contoh, lalu selesaikan latihan di setiap misi.</p><div class="stats"><div class="stat">📚 <b>10</b> Misi</div><div class="stat">🗣️ <b>100+</b> Kosakata</div><div class="stat">🧩 <b>30</b> Soal</div><div class="stat">⭐ <b id="completed">0</b>/10 Misi Selesai</div></div><p class="muted" id="progressText">Progres tersimpan di perangkat ini.</p><div class="progress" aria-label="Kemajuan belajar"><div id="progressFill"></div></div></section>
 <div class="vc-launch"><button type="button" class="btn green" id="openVideoCall">📹 Video Call dengan Mr. Sugeng</button><span class="muted">Latihan percakapan interaktif dengan video animasi (simulasi).</span></div><div class="layout"><aside class="panel"><h2>🪐 Pilih Misi</h2><p class="muted">Bebas memilih materi. Tanda ✓ muncul setelah latihan benar semua.</p><div id="unitNav" class="unitnav"></div></aside>
 <main class="panel"><div class="credit-status" id="creditStatus" role="status">🪙 Saldo Kredit: <strong id="englishCredits">Memuat…</strong> <small id="creditMessage">Hadiah +5 untuk tirukan, +10 untuk latihan sempurna.</small></div><div class="lessonhead"><div><span class="tag" id="missionTag">MISI 01</span><h2 id="lessonTitle">Memuat...</h2><p class="muted" id="lessonSubtitle"></p></div><span class="mission-art" id="missionArt" aria-hidden="true">👩‍🚀</span></div>
 <div class="tabs"><button class="tab active" data-tab="words">📖 Kosakata</button><button class="tab" data-tab="examples">💬 Contoh Kalimat</button><button class="tab" data-tab="quiz">🧩 Latihan</button><button class="tab" data-tab="videos">🎬 Video Pembelajaran</button></div>
