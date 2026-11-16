@@ -73,7 +73,7 @@ function inventoryOpen(type){
  const life=type==='LIFE';
  $('inventoryTitle').textContent=life?'❤️ Kotak Pemulihan Nyawa':'⚡ Botol Energi';
  $('inventoryPreview').src=life?'img/kotak-pemulihan-nyawa.png':'img/botol-energi.png';
- $('inventoryDescription').textContent=life?'Gunakan 1 Kotak Pemulihan Nyawa untuk menambah 1 nyawa?':'Gunakan 1 Botol Energi untuk menambah 40 energi (maksimal 100)?';
+ $('inventoryDescription').textContent=life?'Stok tersedia: '+Number(state?.inventory?.life||0)+' kotak. Gunakan 1 Kotak Pemulihan Nyawa untuk menambah +1 nyawa pemain?':'Gunakan 1 Botol Energi untuk menambah 40 energi (maksimal 100)?';
  $('inventoryError').textContent='';$('inventoryOverlay').classList.remove('hidden');
 }
 $('inventoryLife').onclick=()=>inventoryOpen('LIFE');$('inventoryEnergy').onclick=()=>inventoryOpen('ENERGY');
@@ -117,8 +117,22 @@ $('inventoryConfirm').onclick=async()=>{
  try{
   const r=await NGL.api('useInventory',{token,item:inventorySelection});
   state.progress={...state.progress,nyawa:r.life,nyawa_maks:r.maxLife,energi:r.energy};state.inventory=r.inventory;
-  $('inventoryOverlay').classList.add('hidden');syncAurilWithEnergy(r.energy);render();
-  if(inventorySelection==='ENERGY')await playEnergyDrinkVideo();
+  const usedItem=inventorySelection;
+  $('inventoryOverlay').classList.add('hidden');
+  inventorySelection='';
+  syncAurilWithEnergy(r.energy);
+  // Update angka dan stok langsung, tanpa memanggil render() yang dapat membuka ulang popup serangan.
+  $('lives').textContent=r.life+' / '+r.maxLife;
+  $('energy').textContent=String(r.energy);
+  renderInventory();
+  if(usedItem==='LIFE' && recoveryShowing && !$('attackStage').classList.contains('hidden')){
+    $('giftLife').textContent='❤️ Kotak Pemulihan Nyawa (+1) · Stok '+Number(state?.inventory?.life||0);
+    $('giftStatus').textContent='✅ Kotak Pemulihan Nyawa berhasil digunakan. Nyawa +1! Sekarang '+r.life+' / '+r.maxLife+'. '+(r.life>0&&r.energy>=5?'Tekan Kembali ke Perjalanan untuk melanjutkan.':'Energi masih perlu dipulihkan agar dapat melanjutkan.');
+  } else if(usedItem==='ENERGY'){
+    await playEnergyDrinkVideo();
+  } else {
+    render();
+  }
  }catch(e){$('inventoryError').textContent=e.message||'Gagal menggunakan barang.'}
  finally{inventoryBusy=false;$('inventoryConfirm').disabled=false}
 };
@@ -155,7 +169,11 @@ async function claimAttackGift(type){
  finally{giftClaiming=false}
 }
 $('giftEnergy').onclick=()=>claimAttackGift('energy');
-$('giftLife').onclick=()=>claimAttackGift('life');
+$('giftLife').onclick=()=>{
+ if(inventoryBusy)return;
+ if(Number(state?.inventory?.life||0)<=0){$('giftStatus').textContent='Kotak Pemulihan Nyawa tidak tersedia di inventaris.';return;}
+ inventoryOpen('LIFE');
+};
 
 async function recoveryLoad(){
   const r=await NGL.api('recoveryState',{token});
