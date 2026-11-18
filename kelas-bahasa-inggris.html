@@ -436,10 +436,4 @@ document.getElementById('narBack').addEventListener('click',()=>{detail.classLis
 })();
 </script>
 
-<style>
-.nar-mission-label{position:absolute;z-index:3;pointer-events:none;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.05;font-size:clamp(8px,1.03vw,17px);font-weight:900;color:#fff;text-shadow:0 1px 4px #000,0 0 6px #14285e;background:linear-gradient(90deg,#183c7ff2,#244e94f2);border:1px solid #64bafa88;border-radius:6px;padding:2px 4px;box-sizing:border-box;overflow:hidden}
-</style>
-<script>
-(()=>{const titles=['Days and Months','Telling the Time','My Family and My Friends','My School','Daily Activities','Hobbies','My Dreams'];for(let i=3;i<10;i++){const hit=document.querySelector('[data-nar="mission-'+i+'"]');if(!hit)continue;const label=document.createElement('span');label.className='nar-mission-label';label.textContent=String(i+1).padStart(2,'0')+'. '+titles[i-3];label.style.left=hit.style.left;label.style.top=`calc(${hit.style.top} + ${parseFloat(hit.style.height)*.39}%)`;label.style.width=hit.style.width;label.style.height=`${parseFloat(hit.style.height)*.40}%`;hit.parentElement.append(label)}})();
-</script>
 </body></html>
