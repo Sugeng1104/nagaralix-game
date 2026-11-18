@@ -92,7 +92,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 
 
 /* Ilustrasi pembelajaran khusus Misi 06 */
-.family-illustration{margin:0 0 20px;padding:12px;border:1px solid #72d8f5;border-radius:18px;background:#102c50;box-shadow:0 10px 25px #0004}
+.mission-image-placeholder{min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;border:2px dashed #72d8f5;border-radius:18px;padding:24px;margin-bottom:20px;background:linear-gradient(140deg,#0d2b50,#183c66);color:#e4f4ff}.mission-image-placeholder .image-icon{font-size:58px}.mission-image-placeholder strong{font-size:19px}.mission-image-placeholder small{color:#b7d4ed;overflow-wrap:anywhere}.family-illustration{margin:0 0 20px;padding:12px;border:1px solid #72d8f5;border-radius:18px;background:#102c50;box-shadow:0 10px 25px #0004}
 .family-illustration img{display:block;width:100%;height:auto;border-radius:12px}
 .family-illustration figcaption{padding:10px 5px 2px;color:#d8eafa;text-align:center;font-size:14px;line-height:1.5}
 </style><link rel="stylesheet" href="player-header.css">
@@ -312,12 +312,22 @@ function setupVideos(){const list=$('videoList');videoFiles.forEach((f,i)=>{cons
 function select(i){stopMic();current=i;const u=UNITS[i];$('missionTag').textContent='MISI '+String(i+1).padStart(2,'0');$('lessonTitle').textContent=u.title;$('lessonSubtitle').textContent=u.subtitle;$('missionArt').textContent=missionIcons[i]||'🚀';
 const voc=$('vocab');voc.replaceChildren();u.vocab.forEach(([en,id],itemIndex)=>{const el=document.createElement('div');el.className='word';const pic=document.createElement('span');pic.className='word-visual';pic.textContent=visualFor(en);pic.setAttribute('aria-hidden','true');const t=document.createElement('div');t.className='word-text';const strong=document.createElement('strong');strong.textContent=en;const small=document.createElement('small');small.textContent=id;t.append(strong,small);const b=document.createElement('button');b.className='speak';b.textContent='🔊';b.setAttribute('aria-label','Dengarkan '+en);b.onclick=()=>speech(en);el.append(pic,t,b);createMic(en,el,itemIndex);voc.append(el)});
 const examples=$('examples');examples.replaceChildren();
-if(i===5){
- const figure=document.createElement('figure');figure.className='family-illustration';
- const img=document.createElement('img');img.src='keluarga.png';img.alt='Ilustrasi anggota keluarga dan kegemarannya dalam Bahasa Inggris: father, mother, grandfather, grandmother, brother, sister, cat, dan dog.';img.loading='lazy';
- const caption=document.createElement('figcaption');caption.textContent='👨‍👩‍👧‍👦 This is my family! Amati anggota keluarga dan kegemarannya, lalu pelajari contoh kalimat di bawah.';
- figure.append(img,caption);examples.append(figure);
-}
+// Setiap misi mempunyai slot gambar sendiri pada tab Contoh Kalimat.
+// Unggah file gambar/misi-01.png ... gambar/misi-10.png untuk mengisinya.
+// Misi 06 tetap memakai keluarga.png yang sudah ada.
+const imagePath=i===5?'keluarga.png':'gambar/misi-'+String(i+1).padStart(2,'0')+'.png';
+const figure=document.createElement('figure');figure.className='family-illustration';
+const img=document.createElement('img');img.src=imagePath;img.alt='Gambar pembelajaran Misi '+String(i+1).padStart(2,'0')+' — '+u.title;img.loading='lazy';
+const caption=document.createElement('figcaption');caption.textContent='🖼️ Gambar pembelajaran — Misi '+String(i+1).padStart(2,'0')+': '+u.title;
+const placeholder=document.createElement('div');placeholder.className='mission-image-placeholder';
+const icon=document.createElement('span');icon.className='image-icon';icon.textContent='🖼️';
+const heading=document.createElement('strong');heading.textContent='Tempat Gambar Misi '+String(i+1).padStart(2,'0');
+const hint=document.createElement('small');hint.textContent='Gambar belum ditambahkan. Nama file: '+imagePath;
+placeholder.append(icon,heading,hint);
+img.addEventListener('load',()=>{placeholder.remove();figure.hidden=false});
+img.addEventListener('error',()=>{figure.hidden=true;placeholder.hidden=false});
+figure.hidden=true;placeholder.hidden=false;
+figure.append(img,caption);examples.append(placeholder,figure);
 u.examples.forEach(([en,id],itemIndex)=>{const e=document.createElement('div');e.className='example';const b=document.createElement('button');b.className='speak';b.textContent='🔊';b.onclick=()=>speech(en);const t=document.createElement('div');t.innerHTML='<strong></strong><br><em></em>';t.querySelector('strong').textContent=en;t.querySelector('em').textContent=id;const pic=document.createElement('span');pic.className='example-visual';pic.textContent=missionIcons[current];pic.setAttribute('aria-hidden','true');e.append(pic,t,b);createMic(en,e,u.vocab.length+itemIndex);examples.append(e)});
 $('videoAvailable').classList.toggle('hidden',i!==0);$('videoComingSoon').classList.toggle('hidden',i===0);if(i!==0){$('englishVideo').pause();$('englishVideo').removeAttribute('src');$('englishVideo').load()}drawQuiz();drawNav();setTab('words');}
 function drawQuiz(){const target=$('questions');target.replaceChildren();UNITS[current].quiz.forEach((q,i)=>{const card=document.createElement('fieldset');card.className='question';const legend=document.createElement('legend');legend.textContent=`${i+1}. ${q.q}`;card.append(legend);q.options.forEach((opt,j)=>{const l=document.createElement('label');l.className='option';const inp=document.createElement('input');inp.type='radio';inp.name='q'+i;inp.value=j;const span=document.createElement('span');span.textContent=opt;l.append(inp,span);card.append(l)});target.append(card)});$('result').className='notice hidden';$('nextMission').classList.add('hidden')}
