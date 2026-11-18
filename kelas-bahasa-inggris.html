@@ -70,7 +70,45 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 @media(max-width:420px){.hero:after{opacity:.25;width:60%}.hero p{max-width:100%}.unitnav{grid-template-columns:repeat(2,minmax(0,1fr))}.unitbtn{min-height:94px}}
 @media(prefers-reduced-motion:reduce){.unitbtn,.btn,.back{transition:none}}
 
-</style><link rel="stylesheet" href="player-header.css"></head><body><div class="wrap"><header class="top"><a class="back" href="sekolah.html">← Sekolah Galaksi</a><a class="back" href="permainan.html">🚀 Kembali ke Permainan</a></header>
+
+/* Reference-faithful classroom screen; lesson engine remains untouched. */
+.nar-stage{position:relative;width:100%;aspect-ratio:1648/928;overflow:hidden;background:#071a42 url('kelas-bahasa-inggris-referensi.png') center/100% 100% no-repeat;isolation:isolate}
+.nar-hot{position:absolute;display:block;padding:0;margin:0;background:transparent;border:0;border-radius:12%;cursor:pointer;color:transparent;touch-action:manipulation}
+.nar-hot:hover,.nar-hot:focus-visible{outline:3px solid #fff4a9;outline-offset:-3px;box-shadow:0 0 18px #00efff, inset 0 0 15px #00efff66}
+.nar-hot:focus-visible{z-index:2}.nar-stage .nar-hot:active{transform:scale(.97)}
+.nar-stage .nar-title{position:absolute;left:-9999px}.nar-class-detail{scroll-margin-top:12px}
+.nar-class-detail .wrap{max-width:1360px}.nar-class-detail .hero,.nar-class-detail .top,.nar-class-detail .vc-launch{display:none}
+.nar-class-detail .layout{grid-template-columns:minmax(220px,280px) minmax(0,1fr)}
+.nar-return{position:sticky;top:0;z-index:30;display:flex;gap:10px;align-items:center;justify-content:space-between;background:#0a1642f5;border-bottom:2px solid #42e3ff;padding:10px clamp(12px,3vw,42px);box-shadow:0 8px 25px #0008}
+.nar-return button{border:2px solid #63edff;border-radius:14px;padding:9px 17px;color:white;background:linear-gradient(160deg,#267cd2,#242979);font-weight:800;cursor:pointer}
+.nar-return strong{color:#ffe8a2}.nar-class-detail:not(.nar-open){display:none}
+@media(max-width:920px){.nar-class-detail .layout{grid-template-columns:1fr}.nar-stage{min-width:740px}.nar-stage-shell{overflow-x:auto;background:#080e30}.nar-stage-shell::-webkit-scrollbar{height:8px}.nar-stage-shell::-webkit-scrollbar-thumb{background:#37cafa;border-radius:10px}}
+@media(max-width:650px){.nar-stage{min-width:650px}.nar-return strong{font-size:12px}}
+</style><link rel="stylesheet" href="player-header.css"></head><body><div class="nar-stage-shell"><section class="nar-stage" aria-label="NARAGALIX kelas Bahasa Inggris, mengikuti gambar referensi"><h1 class="nar-title">NARAGALIX — Kelas Bahasa Inggris</h1>
+<button type="button" class="nar-hot" style="left:20.8738%;top:1.1853%;width:5.7646%;height:9.0517%" data-nar="home" aria-label="Beranda" title="Beranda"></button>
+<button type="button" class="nar-hot" style="left:26.7597%;top:1.1853%;width:7.2209%;height:9.0517%" data-nar="class" aria-label="Kelas" title="Kelas"></button>
+<button type="button" class="nar-hot" style="left:34.2840%;top:1.1853%;width:7.0995%;height:9.0517%" data-nar="missions" aria-label="Misi" title="Misi"></button>
+<button type="button" class="nar-hot" style="left:41.6262%;top:1.1853%;width:8.0097%;height:9.0517%" data-nar="shop" aria-label="Galaksi Shop" title="Galaksi Shop"></button>
+<button type="button" class="nar-hot" style="left:49.9393%;top:1.1853%;width:8.1311%;height:9.0517%" data-nar="ranking" aria-label="Peringkat" title="Peringkat"></button>
+<button type="button" class="nar-hot" style="left:60.9830%;top:1.8319%;width:10.9830%;height:7.4353%" data-nar="credits" aria-label="Kredit pemain" title="Kredit pemain"></button>
+<button type="button" class="nar-hot" style="left:73.1189%;top:1.9397%;width:8.7985%;height:7.3276%" data-nar="hearts" aria-label="Nyawa pemain" title="Nyawa pemain"></button>
+<button type="button" class="nar-hot" style="left:83.4345%;top:1.0776%;width:15.2913%;height:10.1293%" data-nar="profile" aria-label="Profil pemain" title="Profil pemain"></button>
+<button type="button" class="nar-hot" style="left:32.1602%;top:33.9440%;width:9.7694%;height:17.0259%" data-nar="mission-0" aria-label="Buka Misi 01" title="Buka Misi 01"></button>
+<button type="button" class="nar-hot" style="left:42.3544%;top:33.9440%;width:9.7694%;height:17.0259%" data-nar="mission-1" aria-label="Buka Misi 02" title="Buka Misi 02"></button>
+<button type="button" class="nar-hot" style="left:52.7306%;top:33.9440%;width:9.7694%;height:17.0259%" data-nar="mission-2" aria-label="Buka Misi 03" title="Buka Misi 03"></button>
+<button type="button" class="nar-hot" style="left:62.7427%;top:33.9440%;width:9.7694%;height:17.0259%" data-nar="mission-3" aria-label="Buka Misi 04" title="Buka Misi 04"></button>
+<button type="button" class="nar-hot" style="left:72.9976%;top:33.9440%;width:9.7694%;height:17.0259%" data-nar="mission-4" aria-label="Buka Misi 05" title="Buka Misi 05"></button>
+<button type="button" class="nar-hot" style="left:32.1602%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-5" aria-label="Buka Misi 06" title="Buka Misi 06"></button>
+<button type="button" class="nar-hot" style="left:42.3544%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-6" aria-label="Buka Misi 07" title="Buka Misi 07"></button>
+<button type="button" class="nar-hot" style="left:52.7306%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-7" aria-label="Buka Misi 08" title="Buka Misi 08"></button>
+<button type="button" class="nar-hot" style="left:62.7427%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-8" aria-label="Buka Misi 09" title="Buka Misi 09"></button>
+<button type="button" class="nar-hot" style="left:72.9976%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-9" aria-label="Buka Misi 10" title="Buka Misi 10"></button>
+<button type="button" class="nar-hot" style="left:27.2451%;top:74.6767%;width:16.6869%;height:16.2716%" data-nar="call" aria-label="Video Call bersama Mr. Sugeng" title="Video Call bersama Mr. Sugeng"></button>
+<button type="button" class="nar-hot" style="left:44.8422%;top:74.6767%;width:9.0413%;height:16.2716%" data-nar="words" aria-label="Kosakata" title="Kosakata"></button>
+<button type="button" class="nar-hot" style="left:54.6723%;top:74.6767%;width:9.3447%;height:16.2716%" data-nar="speak" aria-label="Latihan Berbicara" title="Latihan Berbicara"></button>
+<button type="button" class="nar-hot" style="left:64.6845%;top:74.6767%;width:9.1019%;height:16.2716%" data-nar="quiz" aria-label="Latihan Soal" title="Latihan Soal"></button>
+<button type="button" class="nar-hot" style="left:74.3932%;top:74.6767%;width:9.0413%;height:16.2716%" data-nar="progress" aria-label="Kemajuan Misi" title="Kemajuan Misi"></button>
+</section></div><div class="nar-class-detail" id="narDetail"><div class="nar-return"><button id="narBack" type="button">← Kembali ke Kelas</button><strong id="narContext">📘 Materi Bahasa Inggris</strong></div><div class="wrap"><header class="top"><a class="back" href="sekolah.html">← Sekolah Galaksi</a><a class="back" href="permainan.html">🚀 Kembali ke Permainan</a></header>
 <section class="hero"><span class="tag">🌌 NARAGALIX · SEKOLAH GALAKSI · LEVEL DASAR</span><h1>🇬🇧 Kelas Bahasa Inggris</h1><p>Belajar Bahasa Inggris dari nol bersama Auril! Pelajari kosakata, dengarkan pelafalan, baca contoh, lalu selesaikan latihan di setiap misi.</p><div class="stats"><div class="stat">📚 <b>10</b> Misi</div><div class="stat">🗣️ <b>100+</b> Kosakata</div><div class="stat">🧩 <b>30</b> Soal</div><div class="stat">⭐ <b id="completed">0</b>/10 Misi Selesai</div></div><p class="muted" id="progressText">Progres tersimpan di perangkat ini.</p><div class="progress" aria-label="Kemajuan belajar"><div id="progressFill"></div></div></section>
 <div class="vc-launch"><button type="button" class="btn green" id="openVideoCall">📹 Video Call dengan Mr. Sugeng</button><span class="muted">Latihan percakapan interaktif dengan video animasi (simulasi).</span></div><div class="layout"><aside class="panel"><h2>🪐 Pilih Misi</h2><p class="muted">Bebas memilih materi. Tanda ✓ muncul setelah latihan benar semua.</p><div id="unitNav" class="unitnav"></div></aside>
 <main class="panel"><div class="credit-status" id="creditStatus" role="status">🪙 Saldo Kredit: <strong id="englishCredits">Memuat…</strong> <small id="creditMessage">Hadiah +5 untuk tirukan, +10 untuk latihan sempurna.</small></div><div class="lessonhead"><div><span class="tag" id="missionTag">MISI 01</span><h2 id="lessonTitle">Memuat...</h2><p class="muted" id="lessonSubtitle"></p></div><span class="mission-art" id="missionArt" aria-hidden="true">👩‍🚀</span></div>
@@ -90,7 +128,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 <section id="quizPanel" class="hidden"><p>Jawab <strong>3 soal</strong> dengan benar untuk menyelesaikan misi. Kamu boleh mengulang latihan.</p><div id="questions"></div><div class="actions"><button class="btn green" id="checkAnswers">✓ Periksa Jawaban</button><button class="btn" id="retryQuiz">↻ Ulangi Latihan</button></div><div id="result" class="notice hidden" role="status" aria-live="polite"></div><div class="actions"><button class="btn gold hidden" id="nextMission">Misi Berikutnya →</button></div></section>
 </main></div><footer class="footer">NARAGALIX · English Adventure · Kelas Bahasa Inggris Dasar<br><span class="muted">Hadiah kredit tersimpan di akun NARAGALIX melalui Google Spreadsheet. Klaim sekali per kata/kalimat dan per misi.</span></footer></div>
 
-<div class="vc-overlay" id="vcOverlay" role="dialog" aria-modal="true" aria-labelledby="vcHeading">
+</div><div class="vc-overlay" id="vcOverlay" role="dialog" aria-modal="true" aria-labelledby="vcHeading">
  <div class="vc-dialog"><div class="vc-head"><h2 id="vcHeading">📹 Video Call · Mr. Sugeng</h2><button type="button" class="btn" id="vcClose">✕ Tutup</button></div>
  <label for="vcTopic" class="vc-caption">Pilih pembahasan sesuai misi:</label><select id="vcTopic" class="vc-topic"></select>
  <div class="vc-screen"><video id="vcPlayer" playsinline preload="metadata" aria-label="Video animasi Mr. Sugeng"></video><div class="vc-offline" id="vcOffline"><div><div style="font-size:60px">📡</div><h2>Jaringan Video Call Terputus</h2><p>Hubungan dengan Mr. Sugeng terputus sementara. Video lanjutan sedang disiapkan.</p><p class="vc-caption">Kamu dapat mengakhiri panggilan atau mencoba menghubungkan kembali.</p></div></div></div>
@@ -263,5 +301,36 @@ function listen(){if(!active||!waiting)return;const API=window.SpeechRecognition
 function start(){session++;active=true;step=0;replays=0;clearWait();stopRecognition();el('vcStart').textContent='🔄 Mulai Ulang';if(el('vcTopic').value!=='0'){unavailable();status('📡 Materi '+el('vcTopic').selectedOptions[0].textContent+' belum memiliki video Video Call. Sambungan belum tersedia.');return}playStep()}
 UNITS.forEach((u,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent='Misi '+String(i+1).padStart(2,'0')+' — '+u.title+(i?' (segera hadir)':'');el('vcTopic').append(option)});
 el('openVideoCall').addEventListener('click',open);el('vcClose').addEventListener('click',close);el('vcHangup').addEventListener('click',close);el('vcStart').addEventListener('click',start);el('vcMic').addEventListener('click',listen);el('vcReplay').addEventListener('click',()=>{if(active&&waiting)playStep()});el('vcSend').addEventListener('click',()=>{reply(el('vcText').value);el('vcText').value=''});el('vcText').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();el('vcSend').click()}});el('vcOverlay').addEventListener('click',e=>{if(e.target===el('vcOverlay'))close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&el('vcOverlay').classList.contains('open'))close()});player.addEventListener('ended',()=>{if(active)waitForStudent()});player.addEventListener('error',()=>{if(active){status('Video tidak ditemukan atau tidak dapat diputar: '+prompts[step]?.file);controls(false,true)}});player.addEventListener('click',()=>{if(active&&player.paused&&!waiting)player.play().catch(()=>{})});
+})();
+</script><script>
+/* Reference image hotspots drive the existing lesson controls. */
+(()=>{'use strict';
+const detail=document.getElementById('narDetail'), context=document.getElementById('narContext');
+const nav=document.getElementById('unitNav');
+function openLesson(mission,tab){
+ const b=nav.querySelectorAll('button');if(b[mission])b[mission].click();
+ detail.classList.add('nar-open');
+ context.textContent='📘 Misi '+String(mission+1).padStart(2,'0')+' — '+(document.getElementById('lessonTitle')?.textContent||'Bahasa Inggris');
+ if(tab){const t=document.querySelector('.tab[data-tab="'+tab+'"]');if(t)t.click()}
+ detail.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function currentMission(){const a=[...nav.querySelectorAll('button')];return Math.max(0,a.findIndex(b=>b.classList.contains('active')))}
+function action(v){
+ if(v.startsWith('mission-'))return openLesson(Number(v.split('-')[1]),'words');
+ if(v==='home'){location.href='permainan.html';return}
+ if(v==='class'){window.scrollTo({top:0,behavior:'smooth'});return}
+ if(v==='call'){document.getElementById('openVideoCall').click();return}
+ if(v==='words')return openLesson(currentMission(),'words');
+ if(v==='speak')return openLesson(currentMission(),'examples');
+ if(v==='quiz')return openLesson(currentMission(),'quiz');
+ if(v==='progress'){detail.classList.add('nar-open');document.getElementById('progressText').scrollIntoView({behavior:'smooth'});return}
+ if(v==='missions')return openLesson(currentMission(),'words');
+ if(v==='credits'){openLesson(currentMission(),'words');document.getElementById('creditStatus').scrollIntoView({behavior:'smooth'});return}
+ if(v==='shop'||v==='ranking'||v==='hearts'||v==='profile'){
+  alert('Menu ini mengikuti desain referensi. Tautan fitur perlu disambungkan ke halaman asli proyek NARAGALIX.');return;
+ }
+}
+document.querySelectorAll('[data-nar]').forEach(b=>b.addEventListener('click',()=>action(b.dataset.nar)));
+document.getElementById('narBack').addEventListener('click',()=>{detail.classList.remove('nar-open');window.scrollTo({top:0,behavior:'smooth'})});
 })();
 </script></body></html>
