@@ -313,9 +313,9 @@ function select(i){stopMic();current=i;const u=UNITS[i];$('missionTag').textCont
 const voc=$('vocab');voc.replaceChildren();u.vocab.forEach(([en,id],itemIndex)=>{const el=document.createElement('div');el.className='word';const pic=document.createElement('span');pic.className='word-visual';pic.textContent=visualFor(en);pic.setAttribute('aria-hidden','true');const t=document.createElement('div');t.className='word-text';const strong=document.createElement('strong');strong.textContent=en;const small=document.createElement('small');small.textContent=id;t.append(strong,small);const b=document.createElement('button');b.className='speak';b.textContent='🔊';b.setAttribute('aria-label','Dengarkan '+en);b.onclick=()=>speech(en);el.append(pic,t,b);createMic(en,el,itemIndex);voc.append(el)});
 const examples=$('examples');examples.replaceChildren();
 // Setiap misi mempunyai slot gambar sendiri pada tab Contoh Kalimat.
-// Unggah file gambar/misi-01.png ... gambar/misi-10.png untuk mengisinya.
-// Misi 06 tetap memakai keluarga.png yang sudah ada.
-const imagePath=i===5?'keluarga.png':'gambar/misi-'+String(i+1).padStart(2,'0')+'.png';
+// Unggah file img/misi-01.png ... img/misi-10.png untuk mengisinya.
+// Misi 06 memakai img/keluarga.png.
+const imagePath=i===5?'img/keluarga.png':'img/misi-+String(i+1).padStart(2,'0')+'.png';
 const figure=document.createElement('figure');figure.className='family-illustration';
 const img=document.createElement('img');img.src=imagePath;img.alt='Gambar pembelajaran Misi '+String(i+1).padStart(2,'0')+' — '+u.title;img.loading='lazy';
 const caption=document.createElement('figcaption');caption.textContent='🖼️ Gambar pembelajaran — Misi '+String(i+1).padStart(2,'0')+': '+u.title;
