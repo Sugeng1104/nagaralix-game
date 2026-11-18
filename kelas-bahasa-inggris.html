@@ -84,6 +84,11 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .nar-return strong{color:#ffe8a2}.nar-class-detail:not(.nar-open){display:none}
 @media(max-width:920px){.nar-class-detail .layout{grid-template-columns:1fr}.nar-stage{min-width:740px}.nar-stage-shell{overflow-x:auto;background:#080e30}.nar-stage-shell::-webkit-scrollbar{height:8px}.nar-stage-shell::-webkit-scrollbar-thumb{background:#37cafa;border-radius:10px}}
 @media(max-width:650px){.nar-stage{min-width:650px}.nar-return strong{font-size:12px}}
+
+/* Panel misi: hanya satu kartu aktif; tetap satu kolom pada semua ukuran layar. */
+#unitNav{display:grid;grid-template-columns:minmax(0,1fr)!important}
+#unitNav .unitbtn{cursor:default;min-height:112px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+#unitNav .unitbtn:hover{transform:none}
 </style><link rel="stylesheet" href="player-header.css"></head><body><div class="nar-stage-shell"><section class="nar-stage" aria-label="NARAGALIX kelas Bahasa Inggris, mengikuti gambar referensi"><img class="nar-scene-image" src="kelas-bahasa-inggris-referensi.png" alt="Ilustrasi kelas Bahasa Inggris NARAGALIX, sepuluh misi dan karakter" loading="eager" decoding="async"><h1 class="nar-title">NARAGALIX — Kelas Bahasa Inggris</h1>
 <button type="button" class="nar-hot" style="left:20.8738%;top:1.1853%;width:5.7646%;height:9.0517%" data-nar="home" aria-label="Beranda" title="Beranda"></button>
 <button type="button" class="nar-hot" style="left:26.7597%;top:1.1853%;width:7.2209%;height:9.0517%" data-nar="class" aria-label="Kelas" title="Kelas"></button>
@@ -110,7 +115,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 <button type="button" class="nar-hot" style="left:74.3932%;top:74.6767%;width:9.0413%;height:16.2716%" data-nar="progress" aria-label="Kemajuan Misi" title="Kemajuan Misi"></button>
 </section></div><div class="nar-class-detail" id="narDetail"><div class="nar-return"><button id="narBack" type="button">← Kembali ke Kelas</button><strong id="narContext">📘 Materi Bahasa Inggris</strong></div><div class="wrap"><header class="top"><a class="back" href="sekolah.html">← Sekolah Galaksi</a><a class="back" href="permainan.html">🚀 Kembali ke Permainan</a></header>
 <section class="hero"><span class="tag">🌌 NARAGALIX · SEKOLAH GALAKSI · LEVEL DASAR</span><h1>🇬🇧 Kelas Bahasa Inggris</h1><p>Belajar Bahasa Inggris dari nol bersama Auril! Pelajari kosakata, dengarkan pelafalan, baca contoh, lalu selesaikan latihan di setiap misi.</p><div class="stats"><div class="stat">📚 <b>10</b> Misi</div><div class="stat">🗣️ <b>100+</b> Kosakata</div><div class="stat">🧩 <b>30</b> Soal</div><div class="stat">⭐ <b id="completed">0</b>/10 Misi Selesai</div></div><p class="muted" id="progressText">Progres tersimpan di perangkat ini.</p><div class="progress" aria-label="Kemajuan belajar"><div id="progressFill"></div></div></section>
-<div class="vc-launch"><button type="button" class="btn green" id="openVideoCall">📹 Video Call dengan Mr. Sugeng</button><span class="muted">Latihan percakapan interaktif dengan video animasi (simulasi).</span></div><div class="layout"><aside class="panel"><h2>🪐 Pilih Misi</h2><p class="muted">Bebas memilih materi. Tanda ✓ muncul setelah latihan benar semua.</p><div id="unitNav" class="unitnav"></div></aside>
+<div class="vc-launch"><button type="button" class="btn green" id="openVideoCall">📹 Video Call dengan Mr. Sugeng</button><span class="muted">Latihan percakapan interaktif dengan video animasi (simulasi).</span></div><div class="layout"><aside class="panel"><h2>🪐 Pilih Misi</h2><p class="muted">Hanya misi yang sedang dipilih ditampilkan. Pilih misi lain melalui sepuluh kartu pada layar utama.</p><div id="unitNav" class="unitnav"></div></aside>
 <main class="panel"><div class="credit-status" id="creditStatus" role="status">🪙 Saldo Kredit: <strong id="englishCredits">Memuat…</strong> <small id="creditMessage">Hadiah +5 untuk tirukan, +10 untuk latihan sempurna.</small></div><div class="lessonhead"><div><span class="tag" id="missionTag">MISI 01</span><h2 id="lessonTitle">Memuat...</h2><p class="muted" id="lessonSubtitle"></p></div><span class="mission-art" id="missionArt" aria-hidden="true">👩‍🚀</span></div>
 <div class="tabs"><button class="tab active" data-tab="words">📖 Kosakata</button><button class="tab" data-tab="examples">💬 Contoh Kalimat</button><button class="tab" data-tab="quiz">🧩 Latihan</button><button class="tab" data-tab="videos">🎬 Video Pembelajaran</button></div>
 <section id="wordsPanel"><p class="muted">Tekan tombol 🔊 untuk mendengar pengucapan Bahasa Inggris. Fitur suara menggunakan kemampuan browser.</p><div class="voice-hint voice-settings">
@@ -245,7 +250,7 @@ function createMic(target,container,index){
  container.append(btn,feedback);
 }
 function updateProgress(){$('completed').textContent=completed.size;$('progressFill').style.width=(completed.size/UNITS.length*100)+'%';$('progressText').textContent=`${completed.size} dari ${UNITS.length} misi selesai · progres disimpan di perangkat ini.`}
-function drawNav(){const nav=$('unitNav');nav.replaceChildren();UNITS.forEach((u,i)=>{const b=document.createElement('button');b.className='unitbtn'+(current===i?' active':'');b.innerHTML=`<span class="done">${completed.has(i)?'✓':''}</span><strong>${String(i+1).padStart(2,'0')}. ${u.title}</strong><small>${u.subtitle}</small>`;b.onclick=()=>select(i);nav.append(b)})}
+function drawNav(){const nav=$('unitNav');nav.replaceChildren();const i=current,u=UNITS[i];const b=document.createElement('div');b.className='unitbtn active';b.dataset.mission=String(i);b.setAttribute('aria-label','Misi terpilih '+String(i+1).padStart(2,'0')+' '+u.title);const done=document.createElement('span');done.className='done';done.textContent=completed.has(i)?'✓':'';const title=document.createElement('strong');title.textContent=String(i+1).padStart(2,'0')+'. '+u.title;const subtitle=document.createElement('small');subtitle.textContent=u.subtitle;b.append(done,title,subtitle);nav.append(b)}
 function setTab(name){stopMic();if(name==='videos'){$('videoAvailable').classList.toggle('hidden',current!==0);$('videoComingSoon').classList.toggle('hidden',current===0);if(current!==0){$('englishVideo').pause();$('englishVideo').removeAttribute('src');$('englishVideo').load()}else if(!$('englishVideo').getAttribute('src'))selectVideo(activeVideo)}if(tab==='videos'&&name!=='videos')$('englishVideo').pause();tab=name;for(const name2 of ['words','examples','quiz','videos']){$(name2+'Panel').classList.toggle('hidden',name2!==name)}document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===name))}
 function selectVideo(i){activeVideo=i;const player=$('englishVideo');player.pause();player.src='video/'+videoFiles[i];player.load();$('videoTitle').textContent='Video Pembelajaran '+(i+1);document.querySelectorAll('.video-choice').forEach((b,j)=>b.classList.toggle('active',j===i));$('videoHelp').textContent='Tekan ▶ untuk memutar video '+(i+1)+'.'}
 function setupVideos(){const list=$('videoList');videoFiles.forEach((f,i)=>{const b=document.createElement('button');b.type='button';b.className='video-choice';const title=document.createElement('strong');title.textContent='🎬 Video Pembelajaran '+(i+1);const meta=document.createElement('small');meta.textContent=f+' · sekitar 8 detik';b.append(title,meta);b.onclick=()=>selectVideo(i);list.append(b)});selectVideo(0);$('englishVideo').addEventListener('error',()=>{$('videoHelp').textContent='Video tidak ditemukan. Pastikan file ada di folder video/ pada GitHub.'})} 
@@ -273,7 +278,7 @@ async function check(){
 }
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));$('toExamples').onclick=()=>setTab('examples');$('toQuiz').onclick=()=>setTab('quiz');$('checkAnswers').onclick=check;$('retryQuiz').onclick=drawQuiz;$('nextMission').onclick=()=>select(Math.min(current+1,UNITS.length-1));
 $('listenAll').onclick=()=>{if(!('speechSynthesis'in window)){alert('Browser ini belum mendukung suara.');return}speechSynthesis.cancel();const phrase=UNITS[current].vocab.slice(0,5).map(v=>v[0]).join('. ');speech(phrase)};
-setupVoice();setupVideos();updateProgress();select(0);englishLoadCredit();
+window.narSelectMission=select;setupVoice();setupVideos();updateProgress();select(0);englishLoadCredit();
 })();
 
 // Interactive Mr. Sugeng call; isolated from existing mission/video/credit logic.
@@ -308,13 +313,13 @@ el('openVideoCall').addEventListener('click',open);el('vcClose').addEventListene
 const detail=document.getElementById('narDetail'), context=document.getElementById('narContext');
 const nav=document.getElementById('unitNav');
 function openLesson(mission,tab){
- const b=nav.querySelectorAll('button');if(b[mission])b[mission].click();
+ if(Number.isInteger(mission)&&mission>=0&&mission<10)window.narSelectMission(mission);
  detail.classList.add('nar-open');
  context.textContent='📘 Misi '+String(mission+1).padStart(2,'0')+' — '+(document.getElementById('lessonTitle')?.textContent||'Bahasa Inggris');
  if(tab){const t=document.querySelector('.tab[data-tab="'+tab+'"]');if(t)t.click()}
  detail.scrollIntoView({behavior:'smooth',block:'start'});
 }
-function currentMission(){const a=[...nav.querySelectorAll('button')];return Math.max(0,a.findIndex(b=>b.classList.contains('active')))}
+function currentMission(){return Number(nav.querySelector('[data-mission]')?.dataset.mission||0)}
 function action(v){
  if(v.startsWith('mission-'))return openLesson(Number(v.split('-')[1]),'words');
  if(v==='home'){location.href='permainan.html';return}
