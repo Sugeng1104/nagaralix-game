@@ -72,7 +72,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 
 
 /* Reference-faithful classroom screen; lesson engine remains untouched. */
-.nar-stage{position:relative;width:100%;aspect-ratio:1648/928;overflow:hidden;background:#071a42 url('kelas-bahasa-inggris-referensi.png') center/100% 100% no-repeat;isolation:isolate}
+.nar-stage{position:relative;width:100%;aspect-ratio:1648/928;overflow:hidden;background:#071a42;isolation:isolate;min-height:360px}.nar-scene-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:fill;pointer-events:none;z-index:0}.nar-hot{z-index:2}
 .nar-hot{position:absolute;display:block;padding:0;margin:0;background:transparent;border:0;border-radius:12%;cursor:pointer;color:transparent;touch-action:manipulation}
 .nar-hot:hover,.nar-hot:focus-visible{outline:3px solid #fff4a9;outline-offset:-3px;box-shadow:0 0 18px #00efff, inset 0 0 15px #00efff66}
 .nar-hot:focus-visible{z-index:2}.nar-stage .nar-hot:active{transform:scale(.97)}
@@ -84,7 +84,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .nar-return strong{color:#ffe8a2}.nar-class-detail:not(.nar-open){display:none}
 @media(max-width:920px){.nar-class-detail .layout{grid-template-columns:1fr}.nar-stage{min-width:740px}.nar-stage-shell{overflow-x:auto;background:#080e30}.nar-stage-shell::-webkit-scrollbar{height:8px}.nar-stage-shell::-webkit-scrollbar-thumb{background:#37cafa;border-radius:10px}}
 @media(max-width:650px){.nar-stage{min-width:650px}.nar-return strong{font-size:12px}}
-</style><link rel="stylesheet" href="player-header.css"></head><body><div class="nar-stage-shell"><section class="nar-stage" aria-label="NARAGALIX kelas Bahasa Inggris, mengikuti gambar referensi"><h1 class="nar-title">NARAGALIX — Kelas Bahasa Inggris</h1>
+</style><link rel="stylesheet" href="player-header.css"></head><body><div class="nar-stage-shell"><section class="nar-stage" aria-label="NARAGALIX kelas Bahasa Inggris, mengikuti gambar referensi"><img class="nar-scene-image" src="kelas-bahasa-inggris-referensi.png" alt="Ilustrasi kelas Bahasa Inggris NARAGALIX, sepuluh misi dan karakter" loading="eager" decoding="async"><h1 class="nar-title">NARAGALIX — Kelas Bahasa Inggris</h1>
 <button type="button" class="nar-hot" style="left:20.8738%;top:1.1853%;width:5.7646%;height:9.0517%" data-nar="home" aria-label="Beranda" title="Beranda"></button>
 <button type="button" class="nar-hot" style="left:26.7597%;top:1.1853%;width:7.2209%;height:9.0517%" data-nar="class" aria-label="Kelas" title="Kelas"></button>
 <button type="button" class="nar-hot" style="left:34.2840%;top:1.1853%;width:7.0995%;height:9.0517%" data-nar="missions" aria-label="Misi" title="Misi"></button>
