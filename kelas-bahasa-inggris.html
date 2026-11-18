@@ -90,7 +90,45 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 #unitNav .unitbtn{cursor:default;min-height:112px;display:flex;flex-direction:column;justify-content:center;align-items:center}
 #unitNav .unitbtn:hover{transform:none}
 
-</style><link rel="stylesheet" href="player-header.css"></head><body><div class="nar-stage-shell"><section class="nar-stage" aria-label="NARAGALIX kelas Bahasa Inggris, mengikuti gambar referensi"><img class="nar-scene-image" src="kelas-bahasa-inggris-referensi.png" alt="Ilustrasi kelas Bahasa Inggris NARAGALIX, sepuluh misi dan karakter" loading="eager" decoding="async"><h1 class="nar-title">NARAGALIX — Kelas Bahasa Inggris</h1>
+</style><link rel="stylesheet" href="player-header.css">
+<style id="nar-tahap2-profil">
+/* Tahap 2: profil asli dari player-header.js berada DI DALAM kanvas referensi,
+   bukan header tambahan di atasnya. Hati tetap hanya pada gambar referensi. */
+.nar-stage{container-type:inline-size}
+.nar-stage #ngl-player-bar{
+  position:absolute!important;top:0.9%!important;right:0.8%!important;left:auto!important;
+  width:17.4%!important;min-height:0!important;height:auto!important;
+  display:flex!important;justify-content:flex-end!important;align-items:flex-start!important;
+  padding:0!important;margin:0!important;z-index:10!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+.nar-stage #ngl-player-bar .ngl-player-profile{
+  width:100%;max-width:none;min-width:0;display:flex;align-items:center;
+  gap:0.55cqw;padding:0.35cqw 0.65cqw 0.35cqw 0.35cqw;
+  border:0.11cqw solid #7feaff;border-radius:100px;
+  background:linear-gradient(110deg,#163d78f5,#102b60f5);box-shadow:0 0 1cqw #1ccaff88;
+  color:#fff;text-align:left;cursor:pointer;min-height:5.2cqw;
+}
+.nar-stage #ngl-player-bar .ngl-player-profile img{
+  width:4.4cqw;height:4.4cqw;min-width:0;flex:0 0 4.4cqw;
+  border:0.16cqw solid #ffdd75;border-radius:50%;object-fit:cover;
+}
+.nar-stage #ngl-player-bar .ngl-player-profile span{min-width:0;flex:1}
+.nar-stage #ngl-player-bar .ngl-player-name{
+  max-width:none;font-size:1.18cqw;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.nar-stage #ngl-player-bar .ngl-player-sub{
+  font-size:0.95cqw;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.nar-stage #ngl-player-pop{
+  top:calc(100% + 0.4cqw);right:0;left:auto;max-width:none;width:max(100%,220px);
+  font-size:max(12px,0.9cqw);padding:1cqw;z-index:12;
+}
+.nar-stage #ngl-player-bar .ngl-player-profile:focus-visible{outline:0.2cqw solid #fff3a0;outline-offset:0.15cqw}
+/* Hilangkan scrollbar vertikal akibat header terpisah, tanpa mengubah hotspot. */
+.nar-stage-shell{position:relative}
+</style></head><body><div class="nar-stage-shell"><section class="nar-stage" aria-label="NARAGALIX kelas Bahasa Inggris, mengikuti gambar referensi"><img class="nar-scene-image" src="kelas-bahasa-inggris-referensi.png" alt="Ilustrasi kelas Bahasa Inggris NARAGALIX, sepuluh misi dan karakter" loading="eager" decoding="async"><h1 class="nar-title">NARAGALIX — Kelas Bahasa Inggris</h1>
 <button type="button" class="nar-hot" style="left:20.8738%;top:1.1853%;width:5.7646%;height:9.0517%" data-nar="home" aria-label="Beranda" title="Beranda"></button>
 <button type="button" class="nar-hot" style="left:26.7597%;top:1.1853%;width:7.2209%;height:9.0517%" data-nar="class" aria-label="Kelas" title="Kelas"></button>
 <button type="button" class="nar-hot" style="left:34.2840%;top:1.1853%;width:7.0995%;height:9.0517%" data-nar="missions" aria-label="Misi" title="Misi"></button>
@@ -117,7 +155,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 </section></div><div class="nar-class-detail" id="narDetail"><div class="nar-return"><button id="narBack" type="button">← Kembali ke Kelas</button><strong id="narContext">📘 Materi Bahasa Inggris</strong></div><div class="wrap"><header class="top"><a class="back" href="sekolah.html">← Sekolah Galaksi</a><a class="back" href="permainan.html">🚀 Kembali ke Permainan</a></header>
 <section class="hero"><span class="tag">🌌 NARAGALIX · SEKOLAH GALAKSI · LEVEL DASAR</span><h1>🇬🇧 Kelas Bahasa Inggris</h1><p>Belajar Bahasa Inggris dari nol bersama Auril! Pelajari kosakata, dengarkan pelafalan, baca contoh, lalu selesaikan latihan di setiap misi.</p><div class="stats"><div class="stat">📚 <b>10</b> Misi</div><div class="stat">🗣️ <b>100+</b> Kosakata</div><div class="stat">🧩 <b>30</b> Soal</div><div class="stat">⭐ <b id="completed">0</b>/10 Misi Selesai</div></div><p class="muted" id="progressText">Progres tersimpan di perangkat ini.</p><div class="progress" aria-label="Kemajuan belajar"><div id="progressFill"></div></div></section>
 <div class="vc-launch"><button type="button" class="btn green" id="openVideoCall">📹 Video Call dengan Mr. Sugeng</button><span class="muted">Latihan percakapan interaktif dengan video animasi (simulasi).</span></div><div class="layout"><aside class="panel"><h2>🪐 Pilih Misi</h2><p class="muted">Hanya misi yang sedang dipilih ditampilkan. Pilih misi lain melalui sepuluh kartu pada layar utama.</p><div id="unitNav" class="unitnav"></div></aside>
-<main class="panel"><div class="credit-status" id="creditStatus" role="status">🪙 Saldo Kredit: <strong id="englishCredits">Memuat…</strong> <small id="creditMessage">Hadiah +5 untuk tirukan, +10 untuk latihan sempurna.</small></div><div class="lessonhead"><div><span class="tag" id="missionTag">MISI 01</span><h2 id="lessonTitle">Memuat...</h2><p class="muted" id="lessonSubtitle"></p></div><span class="mission-art" id="missionArt" aria-hidden="true">👩‍🚀</span></div>
+<main class="panel"><div class="credit-status" id="creditStatus" role="status">🪙 Saldo Kredit: <strong id="englishCredits">Memuat…</strong> <small id="creditMessage">Saldo dari server; hadiah Bahasa Inggris belum aktif.</small></div><div class="lessonhead"><div><span class="tag" id="missionTag">MISI 01</span><h2 id="lessonTitle">Memuat...</h2><p class="muted" id="lessonSubtitle"></p></div><span class="mission-art" id="missionArt" aria-hidden="true">👩‍🚀</span></div>
 <div class="tabs"><button class="tab active" data-tab="words">📖 Kosakata</button><button class="tab" data-tab="examples">💬 Contoh Kalimat</button><button class="tab" data-tab="quiz">🧩 Latihan</button><button class="tab" data-tab="videos">🎬 Video Pembelajaran</button></div>
 <section id="wordsPanel"><p class="muted">Tekan tombol 🔊 untuk mendengar pengucapan Bahasa Inggris. Fitur suara menggunakan kemampuan browser.</p><div class="voice-hint voice-settings">
 <strong>🎙️ Studio Suara English Adventure</strong>
@@ -132,7 +170,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 <section id="examplesPanel" class="hidden"><p>Perhatikan kalimat dan artinya. Tekan 🔊 untuk berlatih mendengarkan.</p><div class="speech-note">🎤 Tekan Mic pada kalimat untuk mencoba mengucapkannya. Sistem membandingkan teks hasil pengenalan suara dengan kalimat contoh, bukan mengukur kualitas bunyi pengucapan.</div><div id="examples"></div><div class="notice">💡 <strong>Tips Auril:</strong> Ucapkan kalimat perlahan, kemudian ulangi tanpa melihat teks.</div><button class="btn gold" id="toQuiz">Lanjut: Latihan →</button></section>
 <section id="videosPanel" class="hidden"><div id="videoComingSoon" class="coming-soon hidden" role="status"><span class="coming-icon">🚀🎬</span><h3>Dalam Proses Pembuatan</h3><p>Video pembelajaran untuk misi ini sedang dalam proses pembuatan. Sambil menunggu, ayo belajar melalui Kosakata, Contoh Kalimat, dan Latihan!</p></div><div id="videoAvailable"><p class="muted">Pilih salah satu video Bahasa Inggris. Gunakan tombol pemutar untuk memulai, menjeda, atau memperbesar layar.</p><div class="video-list" id="videoList"></div><div class="video-stage"><h3 id="videoTitle">Video Pembelajaran 1</h3><video id="englishVideo" controls playsinline preload="metadata" aria-label="Video pembelajaran Bahasa Inggris"><source src="video/bi1.mp4" type="video/mp4">Browser tidak mendukung video MP4.</video><p class="muted" id="videoHelp">Video tidak diputar otomatis agar siswa dapat memilih kapan mulai belajar.</p></div></div></section>
 <section id="quizPanel" class="hidden"><p>Jawab <strong>3 soal</strong> dengan benar untuk menyelesaikan misi. Kamu boleh mengulang latihan.</p><div id="questions"></div><div class="actions"><button class="btn green" id="checkAnswers">✓ Periksa Jawaban</button><button class="btn" id="retryQuiz">↻ Ulangi Latihan</button></div><div id="result" class="notice hidden" role="status" aria-live="polite"></div><div class="actions"><button class="btn gold hidden" id="nextMission">Misi Berikutnya →</button></div></section>
-</main></div><footer class="footer">NARAGALIX · English Adventure · Kelas Bahasa Inggris Dasar<br><span class="muted">Hadiah kredit tersimpan di akun NARAGALIX melalui Google Spreadsheet. Klaim sekali per kata/kalimat dan per misi.</span></footer></div>
+</main></div><footer class="footer">NARAGALIX · English Adventure · Kelas Bahasa Inggris Dasar<br><span class="muted">Progres misi Bahasa Inggris tersimpan lokal; saldo dan nyawa dibaca dari server NARAGALIX.</span></footer></div>
 
 </div><div class="vc-overlay" id="vcOverlay" role="dialog" aria-modal="true" aria-labelledby="vcHeading">
  <div class="vc-dialog"><div class="vc-head"><h2 id="vcHeading">📹 Video Call · Mr. Sugeng</h2><button type="button" class="btn" id="vcClose">✕ Tutup</button></div>
@@ -143,7 +181,16 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
  <div class="vc-response" id="vcTextRow" hidden><input id="vcText" placeholder="Atau ketik jawaban Bahasa Inggris di sini" autocomplete="off"><button type="button" class="btn" id="vcSend">Kirim Jawaban</button></div>
  <p class="vc-caption">Simulasi panggilan, bukan panggilan langsung. Jika tidak ada respons selama 8 detik, pertanyaan diulang. Browser dapat meminta izin mikrofon.</p>
  </div></div>
-<script src="config.js"></script><script src="auth.js"></script><script src="player-header.js"></script><script>
+<script src="config.js"></script><script src="auth.js"></script><script src="player-header.js"></script>
+<script>
+/* Tempatkan komponen profil yang sudah ada pada sudut kanan kanvas utama.
+   Tidak membuat profil kedua, tidak mengubah API maupun data sesi. */
+(()=>{
+  const stage=document.querySelector('.nar-stage');
+  const bar=document.getElementById('ngl-player-bar');
+  if(stage&&bar)stage.appendChild(bar);
+})();
+</script><script>
 const UNITS=[{"title": "Greetings & Introductions", "subtitle": "Sapaan dan perkenalan", "vocab": [["Hello", "Halo"], ["Good morning", "Selamat pagi"], ["Good afternoon", "Selamat siang"], ["Good evening", "Selamat malam"], ["Goodbye", "Selamat tinggal"], ["My name is", "Nama saya"], ["How are you?", "Apa kabar?"], ["I'm fine", "Saya baik-baik saja"]], "examples": [["Hello! My name is Auril.", "Halo! Nama saya Auril."], ["Good morning, Rivo!", "Selamat pagi, Rivo!"]], "quiz": [{"q": "What do you say in the morning?", "options": ["Good morning", "Good night", "Goodbye"], "answer": 0}, {"q": "What is 'Nama saya' in English?", "options": ["I am fine", "My name is", "Thank you"], "answer": 1}, {"q": "Which is a greeting?", "options": ["Book", "Hello", "Seven"], "answer": 1}]}, {"title": "Numbers 1–20", "subtitle": "Angka 1 sampai 20", "vocab": [["one", "satu"], ["two", "dua"], ["three", "tiga"], ["four", "empat"], ["five", "lima"], ["six", "enam"], ["seven", "tujuh"], ["eight", "delapan"], ["nine", "sembilan"], ["ten", "sepuluh"], ["eleven", "sebelas"], ["twelve", "dua"], ["thirteen", "belas"], ["fourteen", "tiga"], ["fifteen", "belas"], ["sixteen", "empat"], ["seventeen", "belas"], ["eighteen", "lima"], ["nineteen", "belas"], ["twenty", "enam"]], "examples": [["I have three books.", "Saya mempunyai tiga buku."], ["There are ten stars.", "Ada sepuluh bintang."]], "quiz": [{"q": "What is 12 in English?", "options": ["Twenty", "Twelve", "Two"], "answer": 1}, {"q": "What comes after seven?", "options": ["Eight", "Six", "Nine"], "answer": 0}, {"q": "What is 'lima' in English?", "options": ["Four", "Five", "Fifteen"], "answer": 1}]}, {"title": "Colors & Shapes", "subtitle": "Warna dan bentuk", "vocab": [["Red", "Merah"], ["Blue", "Biru"], ["Green", "Hijau"], ["Yellow", "Kuning"], ["White", "Putih"], ["Black", "Hitam"], ["Circle", "Lingkaran"], ["Square", "Persegi"], ["Triangle", "Segitiga"], ["Rectangle", "Persegi panjang"]], "examples": [["The bottle is green.", "Botol itu berwarna hijau."], ["This is a blue circle.", "Ini lingkaran biru."]], "quiz": [{"q": "What color is grass?", "options": ["Green", "Red", "Black"], "answer": 0}, {"q": "Which word means 'segitiga'?", "options": ["Square", "Triangle", "Circle"], "answer": 1}, {"q": "What is 'kuning' in English?", "options": ["Blue", "Yellow", "White"], "answer": 1}]}, {"title": "Family & Friends", "subtitle": "Keluarga dan teman", "vocab": [["Father", "Ayah"], ["Mother", "Ibu"], ["Brother", "Saudara laki-laki"], ["Sister", "Saudara perempuan"], ["Grandfather", "Kakek"], ["Grandmother", "Nenek"], ["Friend", "Teman"], ["Family", "Keluarga"]], "examples": [["This is my mother.", "Ini ibu saya."], ["Rivo is my friend.", "Rivo adalah teman saya."]], "quiz": [{"q": "What is 'nenek' in English?", "options": ["Grandmother", "Mother", "Sister"], "answer": 0}, {"q": "Who is a friend?", "options": ["Teman", "Ayah", "Kakek"], "answer": 0}, {"q": "What does 'brother' mean?", "options": ["Saudara perempuan", "Saudara laki-laki", "Ibu"], "answer": 1}]}, {"title": "School Objects", "subtitle": "Benda di sekolah", "vocab": [["Book", "Buku"], ["Pencil", "Pensil"], ["Pen", "Pulpen"], ["Eraser", "Penghapus"], ["Ruler", "Penggaris"], ["Bag", "Tas"], ["Desk", "Meja belajar"], ["Chair", "Kursi"], ["Board", "Papan tulis"], ["Teacher", "Guru"]], "examples": [["This is my pencil.", "Ini pensil saya."], ["The book is on the desk.", "Buku itu ada di atas meja."]], "quiz": [{"q": "Which item is used to erase?", "options": ["Ruler", "Eraser", "Chair"], "answer": 1}, {"q": "What is 'penggaris'?", "options": ["Ruler", "Pen", "Bag"], "answer": 0}, {"q": "What does 'teacher' mean?", "options": ["Guru", "Murid", "Meja"], "answer": 0}]}, {"title": "Animals", "subtitle": "Nama hewan", "vocab": [["Cat", "Kucing"], ["Dog", "Anjing"], ["Bird", "Burung"], ["Fish", "Ikan"], ["Cow", "Sapi"], ["Goat", "Kambing"], ["Chicken", "Ayam"], ["Butterfly", "Kupu-kupu"], ["Rabbit", "Kelinci"], ["Elephant", "Gajah"]], "examples": [["The cat is small.", "Kucing itu kecil."], ["I see a fish.", "Saya melihat seekor ikan."]], "quiz": [{"q": "Which animal can fly?", "options": ["Fish", "Bird", "Cow"], "answer": 1}, {"q": "What is 'kelinci'?", "options": ["Rabbit", "Goat", "Cat"], "answer": 0}, {"q": "What is 'ikan'?", "options": ["Fish", "Dog", "Bird"], "answer": 0}]}, {"title": "Food & Drinks", "subtitle": "Makanan dan minuman", "vocab": [["Rice", "Nasi"], ["Bread", "Roti"], ["Egg", "Telur"], ["Milk", "Susu"], ["Water", "Air"], ["Apple", "Apel"], ["Banana", "Pisang"], ["Soup", "Sup"], ["Juice", "Jus"], ["Hungry", "Lapar"]], "examples": [["I drink water.", "Saya minum air."], ["I like bananas.", "Saya suka pisang."]], "quiz": [{"q": "Which one is a drink?", "options": ["Bread", "Water", "Rice"], "answer": 1}, {"q": "What is 'telur'?", "options": ["Egg", "Apple", "Milk"], "answer": 0}, {"q": "What does 'hungry' mean?", "options": ["Haus", "Lapar", "Kenyang"], "answer": 1}]}, {"title": "Body & Health", "subtitle": "Anggota tubuh dan kesehatan", "vocab": [["Head", "Kepala"], ["Eyes", "Mata"], ["Ears", "Telinga"], ["Nose", "Hidung"], ["Mouth", "Mulut"], ["Hands", "Tangan"], ["Feet", "Kaki"], ["Healthy", "Sehat"], ["Tired", "Lelah"], ["Energy", "Energi"]], "examples": [["Auril is tired.", "Auril sedang lelah."], ["Drink water to stay healthy.", "Minum air agar tetap sehat."]], "quiz": [{"q": "What is 'mata'?", "options": ["Eyes", "Ears", "Nose"], "answer": 0}, {"q": "What does 'tired' mean?", "options": ["Sehat", "Lelah", "Senang"], "answer": 1}, {"q": "Which word means 'tangan'?", "options": ["Hands", "Feet", "Head"], "answer": 0}]}, {"title": "Daily Activities", "subtitle": "Kegiatan sehari-hari", "vocab": [["Wake up", "Bangun tidur"], ["Take a bath", "Mandi"], ["Eat breakfast", "Sarapan"], ["Go to school", "Pergi ke sekolah"], ["Read", "Membaca"], ["Write", "Menulis"], ["Play", "Bermain"], ["Study", "Belajar"], ["Sleep", "Tidur"], ["Walk", "Berjalan"]], "examples": [["I go to school every day.", "Saya pergi ke sekolah setiap hari."], ["Auril walks to the portal.", "Auril berjalan menuju portal."]], "quiz": [{"q": "What is 'belajar'?", "options": ["Play", "Study", "Sleep"], "answer": 1}, {"q": "What do you do with a book?", "options": ["Read", "Swim", "Fly"], "answer": 0}, {"q": "What is 'bangun tidur'?", "options": ["Wake up", "Go to bed", "Eat lunch"], "answer": 0}]}, {"title": "Simple Sentences", "subtitle": "Kalimat sederhana", "vocab": [["I", "Saya"], ["You", "Kamu"], ["He", "Dia laki-laki"], ["She", "Dia perempuan"], ["It", "Itu (benda/hewan)"], ["This", "Ini"], ["That", "Itu"], ["Like", "Suka"], ["Have", "Memiliki"], ["Can", "Bisa"]], "examples": [["I am a student.", "Saya seorang siswa."], ["She has a green bottle.", "Dia mempunyai botol hijau."], ["I can read English.", "Saya bisa membaca bahasa Inggris."]], "quiz": [{"q": "Choose the correct sentence.", "options": ["I am student a.", "I am a student.", "Am I a student."], "answer": 1}, {"q": "Which word means 'dia perempuan'?", "options": ["He", "She", "It"], "answer": 1}, {"q": "Complete: I ___ apples.", "options": ["likes", "like", "liking"], "answer": 1}]}];
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
@@ -196,26 +243,19 @@ const englishToken=(window.NGL&&typeof NGL.getToken==='function'&&NGL.getToken()
 const englishClaimedSpeech=new Set(),englishClaimedQuiz=new Set();
 let englishRequestBusy=false;
 async function englishApi(action,data={}){
- if(!englishToken)throw Error('Silakan login NARAGALIX untuk menerima kredit.');
+ if(!englishToken)throw Error('Silakan login NARAGALIX.');
  if(window.NGL&&typeof NGL.api==='function')return NGL.api(action,{token:englishToken,...data});
- const url=window.NARAGALIX_API_URL;if(!url)throw Error('config.js belum diatur.');
- const response=await fetch(url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,token:englishToken,...data})});
- const json=await response.json();if(!json.ok)throw Error(json.error||'Gagal menghubungi server.');return json;
+ throw Error('auth.js belum dimuat.');
 }
 function englishCreditMessage(message){$('creditMessage').textContent=message;}
-function englishApplyCredit(r){if(typeof r.credits==='number')$('englishCredits').textContent=r.credits+' Kredit';}
+function englishApplyCredit(r){if(Number.isFinite(Number(r.credits)))$('englishCredits').textContent=Number(r.credits)+' Kredit';}
 async function englishLoadCredit(){
- if(!englishToken){$('englishCredits').textContent='Login diperlukan';englishCreditMessage('Masuk melalui login.html untuk mendapatkan kredit.');return}
- try{const r=await englishApi('englishState');englishApplyCredit(r);r.speechClaimed.forEach(x=>englishClaimedSpeech.add(x));r.quizClaimed.forEach(x=>englishClaimedQuiz.add(x));englishCreditMessage('Saldo tersinkron dengan Toko Galaksi.');}
- catch(e){$('englishCredits').textContent='Belum tersambung';englishCreditMessage('Gagal memuat kredit: '+e.message)}
+ if(!englishToken){$('englishCredits').textContent='Login diperlukan';englishCreditMessage('Masuk melalui login.html untuk melihat saldo akun.');return}
+ try{const r=await englishApi('schoolState');englishApplyCredit(r);englishCreditMessage('Saldo dibaca dari server NARAGALIX. Hadiah khusus Bahasa Inggris belum diaktifkan di backend.');}
+ catch(e){$('englishCredits').textContent='Belum tersambung';englishCreditMessage('Saldo tidak tersedia: '+e.message)}
 }
 async function englishClaimSpeech(mission,index,transcript,feedback){
- const code='M'+String(mission).padStart(2,'0')+'-I'+String(index).padStart(2,'0');
- if(englishClaimedSpeech.has(code)){feedback.textContent+='\n🪙 Hadiah +5 untuk item ini sudah pernah diambil.';return}
- try{const r=await englishApi('englishReward',{kind:'speech',mission,index,transcript});englishApplyCredit(r);
- if(r.passed){englishClaimedSpeech.add(code);feedback.textContent+=r.earnedCredits?'\n🪙 Selamat! +5 kredit masuk ke saldo.':'\n🪙 Kredit item ini sudah pernah diklaim.'}
- else feedback.textContent+='\n🪙 Kredit belum diberikan karena ucapan belum cocok.';
- }catch(e){feedback.textContent+='\n⚠️ Kredit belum masuk: '+e.message}
+ feedback.textContent+='\n🎤 Latihan pengucapan berhasil secara lokal. Hadiah kredit Bahasa Inggris belum tersedia di backend.';
 }
 const SpeechRecognitionAPI=window.SpeechRecognition||window.webkitSpeechRecognition;
 let activeRecognition=null,activeMicButton=null;
@@ -268,14 +308,8 @@ async function check(){
  result.className='notice '+(score===3?'good':'bad');
  if(score!==3){result.textContent='Kamu menjawab '+score+'/3 benar. Coba pelajari kembali dan ulangi latihan.';$('nextMission').classList.add('hidden');return}
  completed.add(current);save();updateProgress();drawNav();
- result.textContent='🎉 Excellent! Semua 3 jawaban benar. Memverifikasi hadiah +10 kredit ke server…';
+ result.textContent='🎉 Excellent! Semua 3 jawaban benar. Misi selesai pada perangkat ini. Hadiah kredit Bahasa Inggris belum diaktifkan di server.';
  if(current<UNITS.length-1)$('nextMission').classList.remove('hidden');else $('nextMission').classList.add('hidden');
- englishRequestBusy=true;$('checkAnswers').disabled=true;
- try{const r=await englishApi('englishReward',{kind:'quiz',mission,answers});englishApplyCredit(r);
-  if(r.passed){englishClaimedQuiz.add('M'+String(mission).padStart(2,'0'));result.textContent=r.earnedCredits?'🎉 Excellent! 3/3 benar. +10 kredit berhasil masuk ke saldo!':'🎉 Excellent! 3/3 benar. Hadiah +10 kredit misi ini sudah pernah diklaim.'}
-  else result.textContent='Jawaban belum cocok dengan kunci server. Silakan ulangi latihan.';
- }catch(e){result.textContent='🎉 Latihan 3/3 benar secara lokal, tetapi kredit belum masuk: '+e.message+' Coba kirim ulang saat koneksi pulih.'}
- finally{englishRequestBusy=false;$('checkAnswers').disabled=false}
 }
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));$('toExamples').onclick=()=>setTab('examples');$('toQuiz').onclick=()=>setTab('quiz');$('checkAnswers').onclick=check;$('retryQuiz').onclick=drawQuiz;$('nextMission').onclick=()=>select(Math.min(current+1,UNITS.length-1));
 $('listenAll').onclick=()=>{if(!('speechSynthesis'in window)){alert('Browser ini belum mendukung suara.');return}speechSynthesis.cancel();const phrase=UNITS[current].vocab.slice(0,5).map(v=>v[0]).join('. ');speech(phrase)};
@@ -333,10 +367,72 @@ function action(v){
  if(v==='missions')return openLesson(currentMission(),'words');
  if(v==='credits'){openLesson(currentMission(),'words');document.getElementById('creditStatus').scrollIntoView({behavior:'smooth'});return}
  if(v==='shop'||v==='ranking'||v==='hearts'||v==='profile'){
-  alert('Menu ini mengikuti desain referensi. Tautan fitur perlu disambungkan ke halaman asli proyek NARAGALIX.');return;
+  if(v==='hearts'||v==='shop'||v==='ranking')return window.nglOpenStatus?.(v);
+  document.querySelector('#ngl-player-bar .ngl-player-profile')?.click();return;
  }
 }
 document.querySelectorAll('[data-nar]').forEach(b=>b.addEventListener('click',()=>action(b.dataset.nar)));
 document.getElementById('narBack').addEventListener('click',()=>{detail.classList.remove('nar-open');window.scrollTo({top:0,behavior:'smooth'})});
 })();
-</script></body></html>
+</script>
+<style id="ngl-stage3-css">
+/* Stage 3: status dinamis menggantikan area angka/hati statis pada gambar, bukan membuat baris baru. */
+.nar-stage .ngl-live-stat{position:absolute;z-index:7;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(110deg,#122b62f8,#24518bf8);color:#fff4b7;border:1px solid #74e6ff;
+  border-radius:100px;font:bold clamp(9px,1.15vw,17px) system-ui,sans-serif;white-space:nowrap;
+  box-shadow:0 2px 12px #0009;cursor:pointer;padding:0 4px}
+.nar-stage .ngl-live-stat:focus-visible{outline:3px solid #ffeb78}
+#ngl-live-credits{left:60.98%;top:1.83%;width:10.98%;height:7.44%}
+#ngl-live-hearts{left:73.12%;top:1.94%;width:8.8%;height:7.33%}
+#ngl-status-dialog{border:1px solid #7deaff;border-radius:20px;background:#10264b;color:#f6faff;
+  width:min(94vw,490px);padding:24px;box-shadow:0 15px 60px #000b;font:15px/1.5 system-ui,sans-serif}
+#ngl-status-dialog::backdrop{background:#000b}
+#ngl-status-dialog h2{margin:0 0 12px;color:#ffe28c}
+#ngl-status-dialog .ngl-status-row{padding:8px 0;border-bottom:1px solid #42628c}
+#ngl-status-dialog button{border:1px solid #7deaff;background:#194878;color:white;border-radius:9px;padding:9px 13px;cursor:pointer;margin-top:14px;margin-right:8px}
+</style>
+<script id="ngl-stage3-script">
+(()=>{'use strict';
+ const stage=document.querySelector('.nar-stage');if(!stage)return;
+ const make=(id,label,click)=>{const b=document.createElement('button');b.type='button';b.id=id;b.className='ngl-live-stat';b.textContent=label;b.addEventListener('click',click);stage.appendChild(b);return b};
+ const coins=make('ngl-live-credits','🪙 —',()=>open('credits'));
+ const hearts=make('ngl-live-hearts','❤️ —/—',()=>open('hearts'));
+ const dialog=document.createElement('dialog');dialog.id='ngl-status-dialog';dialog.innerHTML='<h2>🚀 Status Penjelajah</h2><div id="ngl-status-content" aria-live="polite">Memuat…</div><button type="button" id="ngl-status-refresh">🔄 Segarkan</button><button type="button" id="ngl-status-close">Tutup</button>';
+ document.body.append(dialog);
+ dialog.querySelector('#ngl-status-close').onclick=()=>dialog.close();
+ dialog.querySelector('#ngl-status-refresh').onclick=()=>refresh();
+ let last=null,inventory=null;
+ const row=(name,value)=>'<div class="ngl-status-row"><strong>'+name+':</strong> '+value+'</div>';
+ function render(){
+  const p=last?.progress||{},c=inventory;
+  const life=Number.isFinite(p.nyawa)?p.nyawa:null,max=Number.isFinite(p.nyawa_maks)?p.nyawa_maks:null;
+  const credit=Number.isFinite(c?.credits)?c.credits:null;
+  coins.textContent='🪙 '+(credit===null?'—':credit);
+  hearts.textContent='❤️ '+(life===null?'—':life)+'/'+(max===null?'—':max);
+  const el=dialog.querySelector('#ngl-status-content');
+  el.innerHTML=row('Nyawa',life===null?'Belum tersedia':life+' / '+max)+row('Energi',Number.isFinite(p.energi)?p.energi+' / 100':'Belum tersedia')+
+   row('Kredit',credit===null?'Belum tersedia':credit)+row('Kotak pemulihan',Number.isFinite(c?.inventory?.life)?c.inventory.life:'Belum tersedia')+
+   row('Botol energi',Number.isFinite(c?.inventory?.energy)?c.inventory.energy:'Belum tersedia')+
+   row('Skor permainan',Number.isFinite(p.skor_total)?p.skor_total:'Belum tersedia')+
+   '<p style="color:#bbd4ef;font-size:13px">Data akun berasal dari server. Progres 10 misi Bahasa Inggris masih disimpan di browser. Pembelian dan penggunaan item dilakukan melalui fitur permainan yang sudah ada.</p>';
+ }
+ async function refresh(){
+  const content=dialog.querySelector('#ngl-status-content');content.textContent='Mengambil status dari server…';
+  const token=window.NGL?.getToken?.();if(!token){content.textContent='Silakan login terlebih dahulu.';coins.textContent='🪙 —';hearts.textContent='❤️ —/—';return}
+  if(typeof window.NGL?.api!=='function'){content.textContent='auth.js belum tersedia.';return}
+  const results=await Promise.allSettled([window.NGL.api('dashboardData',{token}),window.NGL.api('schoolState',{token})]);
+  if(results[0].status==='fulfilled')last=results[0].value;
+  if(results[1].status==='fulfilled')inventory=results[1].value;
+  render();
+  if(results.some(x=>x.status==='rejected')){
+    const errors=results.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'Koneksi gagal');
+    content.insertAdjacentHTML('beforeend','<p style="color:#ffd3a0">Sebagian data belum dapat dimuat. Periksa koneksi dan login.</p>');
+    console.warn('NARAGALIX status:',...errors);
+  }
+ }
+ function open(section){if(!dialog.open)dialog.showModal();refresh()}
+ window.nglOpenStatus=open;
+ refresh();document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+})();
+</script>
+</body></html>
