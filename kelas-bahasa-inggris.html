@@ -251,11 +251,20 @@ function englishCreditMessage(message){$('creditMessage').textContent=message;}
 function englishApplyCredit(r){if(Number.isFinite(Number(r.credits)))$('englishCredits').textContent=Number(r.credits)+' Kredit';}
 async function englishLoadCredit(){
  if(!englishToken){$('englishCredits').textContent='Login diperlukan';englishCreditMessage('Masuk melalui login.html untuk melihat saldo akun.');return}
- try{const r=await englishApi('schoolState');englishApplyCredit(r);englishCreditMessage('Saldo dibaca dari server NARAGALIX. Hadiah khusus Bahasa Inggris belum diaktifkan di backend.');}
+ try{const r=await englishApi('schoolState');englishApplyCredit(r);englishCreditMessage('Saldo kredit tersinkron dari server NARAGALIX.');}
  catch(e){$('englishCredits').textContent='Belum tersambung';englishCreditMessage('Saldo tidak tersedia: '+e.message)}
 }
 async function englishClaimSpeech(mission,index,transcript,feedback){
- feedback.textContent+='\n🎤 Latihan pengucapan berhasil secara lokal. Hadiah kredit Bahasa Inggris belum tersedia di backend.';
+ const claimKey=mission+':'+index;
+ if(englishClaimedSpeech.has(claimKey))return;
+ englishClaimedSpeech.add(claimKey);
+ feedback.textContent+='\n⏳ Memeriksa hadiah kredit...';
+ try{
+  const r=await englishApi('englishReward',{kind:'speech',mission,item:index});
+  englishApplyCredit(r);
+  feedback.textContent+='\n'+(r.earnedCredits?'🎁 +'+r.earnedCredits+' kredit tersimpan di akun.':'✓ Hadiah untuk kata ini sudah pernah diklaim.');
+  englishCreditMessage('Saldo kredit terbaru: '+r.credits);
+ }catch(e){englishClaimedSpeech.delete(claimKey);feedback.textContent+='\n⚠️ Kredit belum tersimpan: '+e.message;}
 }
 const SpeechRecognitionAPI=window.SpeechRecognition||window.webkitSpeechRecognition;
 let activeRecognition=null,activeMicButton=null;
@@ -308,7 +317,12 @@ async function check(){
  result.className='notice '+(score===u.quiz.length?'good':'bad');
  if(score!==u.quiz.length){result.textContent='Kamu menjawab '+score+'/'+u.quiz.length+' benar. Coba pelajari kembali dan ulangi latihan.';$('nextMission').classList.add('hidden');return}
  completed.add(current);save();updateProgress();drawNav();
- result.textContent='🎉 Excellent! Semua '+u.quiz.length+' jawaban benar. Misi selesai pada perangkat ini. Hadiah kredit Bahasa Inggris belum diaktifkan di server.';
+ result.textContent='🎉 Excellent! Semua '+u.quiz.length+' jawaban benar. Menyimpan hadiah ke server...';
+ try{
+  const r=await englishApi('englishReward',{kind:'quiz',mission,answers});
+  englishApplyCredit(r);
+  result.textContent='🎉 Excellent! Semua '+u.quiz.length+' jawaban benar. '+(r.earnedCredits?'🎁 +'+r.earnedCredits+' kredit telah disimpan.':'Hadiah misi ini sudah pernah diklaim.');
+ }catch(e){result.textContent='🎉 Latihan selesai secara lokal. Hadiah kredit belum tersimpan: '+e.message;}
  if(current<UNITS.length-1)$('nextMission').classList.remove('hidden');else $('nextMission').classList.add('hidden');
 }
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));$('toExamples').onclick=()=>setTab('examples');$('toQuiz').onclick=()=>setTab('quiz');$('checkAnswers').onclick=check;$('retryQuiz').onclick=drawQuiz;$('nextMission').onclick=()=>select(Math.min(current+1,UNITS.length-1));
