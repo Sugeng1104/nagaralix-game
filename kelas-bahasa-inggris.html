@@ -91,6 +91,12 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 #unitNav .unitbtn:hover{transform:none}
 
 
+/* Pastikan atribut hidden mengalahkan display:flex/display:block pada gambar dan placeholder. */
+.mission-image-placeholder[hidden],
+.example-illustration .example-fallback[hidden],
+.family-illustration img[hidden],
+.example-illustration img[hidden]{display:none!important}
+
 /* Ilustrasi pembelajaran khusus Misi 06 */
 .mission-image-placeholder{min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;border:2px dashed #72d8f5;border-radius:18px;padding:24px;margin-bottom:20px;background:linear-gradient(140deg,#0d2b50,#183c66);color:#e4f4ff}.mission-image-placeholder .image-icon{font-size:58px}.mission-image-placeholder strong{font-size:19px}.mission-image-placeholder small{color:#b7d4ed;overflow-wrap:anywhere}.family-illustration{margin:0 0 20px;padding:12px;border:1px solid #72d8f5;border-radius:18px;background:#102c50;box-shadow:0 10px 25px #0004}
 .family-illustration img{display:block;width:100%;height:auto;border-radius:12px}
@@ -359,8 +365,8 @@ function clearImageLoaders(){imageLoadCleanups.forEach(fn=>fn());imageLoadCleanu
 function loadLessonImage(img, fallback, path){
   let disposed=false, timer=null, attempt=0, loaded=false;
   const maxAttempts=4;
-  const showLoaded=()=>{if(disposed)return;loaded=true;clearTimeout(timer);img.hidden=false;fallback.hidden=true;};
-  const showFallback=()=>{if(disposed)return;img.hidden=true;fallback.hidden=false;};
+  const showLoaded=()=>{if(disposed)return;loaded=true;clearTimeout(timer);fallback.hidden=true;img.hidden=false;if(img.closest('.family-illustration'))img.closest('.family-illustration').hidden=false;};
+  const showFallback=()=>{if(disposed)return;img.hidden=true;fallback.hidden=false;if(img.closest('.family-illustration'))img.closest('.family-illustration').hidden=true;};
   const load=()=>{
     if(disposed||loaded)return;
     clearTimeout(timer);attempt++;
@@ -396,7 +402,7 @@ const icon=document.createElement('span');icon.className='image-icon';icon.textC
 const heading=document.createElement('strong');heading.textContent='Tempat Gambar Misi '+String(i+1).padStart(2,'0');
 const hint=document.createElement('small');hint.textContent='Gambar belum ditambahkan. Nama file: '+imagePath;
 placeholder.append(icon,heading,hint);
-figure.append(img,caption);examples.append(placeholder,figure);
+figure.hidden=true;figure.append(img,caption);examples.append(placeholder,figure);
 // Placeholder tidak dihapus permanen: gambar dapat pulih setelah koneksi kembali.
 loadLessonImage(img,placeholder,imagePath);
 u.examples.forEach(([en,id],itemIndex)=>{
