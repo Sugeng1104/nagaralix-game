@@ -92,6 +92,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 
 
 /* Pastikan atribut hidden mengalahkan display:flex/display:block pada gambar dan placeholder. */
+.family-illustration[hidden],
 .mission-image-placeholder[hidden],
 .example-illustration .example-fallback[hidden],
 .family-illustration img[hidden],
@@ -412,7 +413,7 @@ u.examples.forEach(([en,id],itemIndex)=>{
   const figure=document.createElement('figure');figure.className='example-illustration';
   const fallback=document.createElement('div');fallback.className='example-fallback';
   const fallbackIcon=document.createElement('span');fallbackIcon.textContent=visualFor(en)||missionIcons[i]||'🖼️';
-  const fallbackHint=document.createElement('small');fallbackHint.textContent='Ilustrasi: '+imageName;
+  const fallbackHint=document.createElement('small');fallbackHint.textContent='Gambar kalimat belum tersedia';fallbackHint.title='Unggah gambar: '+imagePath;
   fallback.append(fallbackIcon,fallbackHint);
   const picture=document.createElement('img');picture.alt='Ilustrasi kalimat: '+en;picture.loading='lazy';picture.decoding='async';
   picture.hidden=true;
