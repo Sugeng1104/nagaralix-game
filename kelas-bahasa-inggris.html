@@ -168,7 +168,7 @@ body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 <button type="button" class="nar-hot" style="left:52.7306%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-7" aria-label="Buka Misi 08" title="Buka Misi 08"></button>
 <button type="button" class="nar-hot" style="left:62.7427%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-8" aria-label="Buka Misi 09" title="Buka Misi 09"></button>
 <button type="button" class="nar-hot" style="left:72.9976%;top:54.2026%;width:9.7694%;height:17.0259%" data-nar="mission-9" aria-label="Buka Misi 10" title="Buka Misi 10"></button>
-<button type="button" class="nar-hot" style="left:27.2451%;top:74.6767%;width:16.6869%;height:16.2716%" data-nar="call" aria-label="Video Call bersama Mr. Sugeng" title="Video Call bersama Mr. Sugeng"></button>
+<button type="button" class="nar-hot" style="left:27.2451%;top:74.6767%;width:16.6869%;height:16.2716%" data-nar="call" aria-label="Buka halaman Part Body bersama Mr. Sugeng" title="Klik Mr. Sugeng — Buka Part Body"></button>
 <button type="button" class="nar-hot" style="left:44.8422%;top:74.6767%;width:9.0413%;height:16.2716%" data-nar="words" aria-label="Kosakata" title="Kosakata"></button>
 <button type="button" class="nar-hot" style="left:54.6723%;top:74.6767%;width:9.3447%;height:16.2716%" data-nar="speak" aria-label="Latihan Berbicara" title="Latihan Berbicara"></button>
 <button type="button" class="nar-hot" style="left:64.6845%;top:74.6767%;width:9.1019%;height:16.2716%" data-nar="quiz" aria-label="Latihan Soal" title="Latihan Soal"></button>
@@ -540,7 +540,7 @@ function action(v){
  if(v.startsWith('mission-'))return openLesson(Number(v.split('-')[1]),'words');
  if(v==='home'){location.href='permainan.html';return}
  if(v==='class'){window.scrollTo({top:0,behavior:'smooth'});return}
- if(v==='call'){document.getElementById('openVideoCall').click();return}
+ if(v==='call'){window.location.href='part-body.html';return}
  if(v==='words')return openLesson(currentMission(),'words');
  if(v==='speak')return openLesson(currentMission(),'examples');
  if(v==='quiz')return openLesson(currentMission(),'quiz');
