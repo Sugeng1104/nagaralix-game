@@ -250,14 +250,58 @@ function setupVoice(){
  refreshVoices();if('speechSynthesis' in window){speechSynthesis.addEventListener?.('voiceschanged',refreshVoices);setTimeout(refreshVoices,500)}
 }
 function setupVoiceValues(){$('voicePitch').value=String(selectedPitch);$('voiceRate').value=String(selectedRate);$('voicePitchValue').textContent=selectedPitch.toFixed(1);$('voiceRateValue').textContent=selectedRate.toFixed(2)}
+let activeSpeechUtterance=null;
+let speechStartTimer=null;
+let speechResumeTimer=null;
+let speechGeneration=0;
 function speech(text){
- if(!('speechSynthesis' in window)){alert('Browser ini belum mendukung suara.');return}
- speechSynthesis.cancel();
- const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.pitch=selectedPitch;u.rate=selectedRate;u.volume=1;
- const v=availableVoices.find(v=>voiceId(v)===selectedVoiceId)||availableVoices.find(v=>v.lang.toLowerCase()==='en-us')||availableVoices[0];
+ const status=$('voiceStatus');
+ if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){
+  status.textContent='Browser tidak mendukung pembacaan teks. Gunakan Chrome atau Edge terbaru.';return;
+ }
+ const engine=window.speechSynthesis;
+ const generation=++speechGeneration;
+ clearTimeout(speechStartTimer);clearTimeout(speechResumeTimer);
+ try{engine.cancel()}catch(e){console.warn('NARAGALIX TTS cancel:',e)}
+ const u=new SpeechSynthesisUtterance(String(text));
+ u.lang='en-US';u.pitch=selectedPitch;u.rate=selectedRate;u.volume=1;
+ // Pilihan suara otomatis: utamakan English US yang tersedia secara lokal.
+ const voices=engine.getVoices();
+ const english=voices.filter(v=>/^en(?:[-_]|$)/i.test(v.lang));
+ const v=english.find(v=>voiceId(v)===selectedVoiceId)
+  ||english.find(v=>/^en-US$/i.test(v.lang)&&v.localService)
+  ||english.find(v=>v.localService)
+  ||english.find(v=>/^en-US$/i.test(v.lang))
+  ||english[0];
  if(v){u.voice=v;u.lang=v.lang}
- u.onerror=()=>{$('voiceStatus').textContent='Suara tidak berhasil diputar. Coba suara lain atau periksa volume perangkat.'};
- speechSynthesis.speak(u);
+ activeSpeechUtterance=u;
+ let started=false;
+ u.onstart=()=>{if(generation!==speechGeneration)return;started=true;status.textContent='🔊 Suara sedang diputar melalui output audio perangkat.'};
+ u.onend=()=>{if(generation!==speechGeneration)return;clearTimeout(speechResumeTimer);activeSpeechUtterance=null;status.textContent='✓ Pembacaan suara selesai.'};
+ u.onerror=e=>{
+  if(generation!==speechGeneration||e.error==='canceled'||e.error==='interrupted')return;
+  clearTimeout(speechResumeTimer);activeSpeechUtterance=null;
+  status.textContent='⚠️ Suara gagal: '+(e.error||'tidak diketahui')+'. Coba pilih suara lain, lalu tekan Coba suara.';
+  console.warn('NARAGALIX SpeechSynthesis:',e.error);
+ };
+ status.textContent='⏳ Menyiapkan suara Bahasa Inggris…';
+ // Chrome/Windows terkadang tidak memulai utterance baru jika cancel dan speak
+ // dieksekusi pada tick yang sama. Beri jeda pendek sebelum memulai ulang.
+ speechStartTimer=setTimeout(()=>{
+  if(generation!==speechGeneration)return;
+  try{
+   engine.speak(u);
+   engine.resume();
+   // Pemulihan terbatas untuk antrean TTS Chrome yang macet (terutama saat
+   // output audio berubah ke Bluetooth); tidak membuat antrean baru.
+   speechResumeTimer=setTimeout(()=>{
+    if(generation===speechGeneration&&!started&&engine.pending){
+     try{engine.resume()}catch(e){}
+     status.textContent='⏳ Menunggu mesin suara Chrome. Jika tetap diam, coba suara perangkat lain.';
+    }
+   },1400);
+  }catch(e){status.textContent='⚠️ Mesin suara Chrome tidak dapat dimulai: '+e.message;console.error(e)}
+ },90);
 }
 
 const englishToken=(window.NGL&&typeof NGL.getToken==='function'&&NGL.getToken())||'';
